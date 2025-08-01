@@ -483,6 +483,25 @@ for (let key of iterator) {
 
 <br />
 
+## `values()`
+
+回傳一個陣列值 (values) 的迭代器，可用 `for...of` 取出每個值。
+
+```
+const arr = ['a', 'b', 'c'];
+const iterator = arr.values();
+
+for (const value of iterator) {
+  console.log(value);
+}
+
+// a
+// b
+// c
+```
+
+<br />
+
 ## `from()`
 
 將類陣列物件或可迭代物件轉換為陣列。
