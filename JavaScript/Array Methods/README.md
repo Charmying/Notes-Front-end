@@ -538,6 +538,19 @@ console.log(arr.valueOf());   // [1, 2, 3]
 
 <br />
 
+## `at()` (ES2022)
+
+取得指定索引的值 (支援負索引，從陣列尾端開始算)。
+
+```
+const arr = [10, 20, 30, 40];
+
+console.log(arr.at(1));   // 20
+console.log(arr.at(-1));   // 40 (最後一個元素)
+```
+
+<br />
+
 ## `delete` 運算符
 
 刪除陣列中的某個元素，但不會改變陣列的長度，會留下 empty。
