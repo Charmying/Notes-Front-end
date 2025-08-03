@@ -551,6 +551,19 @@ console.log(arr.at(-1));   // 40 (最後一個元素)
 
 <br />
 
+## `group()` (ES2023)
+
+根據 callback function 的回傳值分組陣列元素，回傳一個物件 (Object)。
+
+```
+const arr = [1, 2, 3, 4, 5];
+const grouped = arr.group(num => num % 2 === 0 ? 'even' : 'odd');
+
+console.log(grouped);   // { odd: [1, 3, 5], even: [2, 4] }
+```
+
+<br />
+
 ## `delete` 運算符
 
 刪除陣列中的某個元素，但不會改變陣列的長度，會留下 empty。
