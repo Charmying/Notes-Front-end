@@ -564,6 +564,19 @@ console.log(grouped);   // { odd: [1, 3, 5], even: [2, 4] }
 
 <br />
 
+## `groupToMap()` (ES2023)
+
+和 `group()` 類似，但回傳 Map 物件，更適合需要鍵值為非字串的情境。
+
+```
+const arr = [1, 2, 3, 4, 5];
+const groupedMap = arr.groupToMap(num => num % 2 === 0 ? 'even' : 'odd');
+
+console.log(groupedMap);   // Map(2) { 'odd' => [1, 3, 5], 'even' => [2, 4] }
+```
+
+<br />
+
 ## `delete` 運算符
 
 刪除陣列中的某個元素，但不會改變陣列的長度，會留下 empty。
