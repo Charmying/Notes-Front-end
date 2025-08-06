@@ -106,3 +106,38 @@ do {
 ### 補充
 
 - 不論條件是否成立，區塊會先執行一次。
+
+<br />
+
+## `for...of` Loop (ES6)
+
+用來遍歷「可疊代 (iterable)」的物件，例如：陣列、字串、Map、Set。
+
+### 語法結構
+
+```
+for (const item of 可迭代物件) {
+  // 使用 item
+}
+```
+
+### 範例
+
+```
+const fruits = ["apple", "banana", "cherry"];
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+```
+
+### 試用情境
+
+- 遍歷陣列或字串內容
+
+- 簡潔方式處理迭代
+
+### 補充
+
+- 無法取得索引 (使用 `for...in` 或傳統 `for`)
+
+- 可搭配 `entries()` 同時取得索引與值
