@@ -141,3 +141,38 @@ for (const fruit of fruits) {
 - 無法取得索引 (使用 `for...in` 或傳統 `for`)
 
 - 可搭配 `entries()` 同時取得索引與值
+
+<br />
+
+## `for...in` Loop
+
+用於列舉物件的可列舉屬性名稱 (key)，也可用於陣列 (不推薦)。
+
+### 語法結構
+
+```
+for (const key in 物件) {
+  // 使用 key 和 物件[key]
+}
+```
+
+### 範例
+
+```
+const user = { name: "Charmy", age: 28 };
+for (const key in user) {
+  console.log(`${key}：${user[key]}`);
+}
+```
+
+### 試用情境
+
+- 列出物件的所有屬性
+
+- 動態列印 JSON 結構
+
+### 補充
+
+- 若用於陣列，會取得索引值字串 (不推薦)
+
+- 會列出原型鏈上的屬性，需加上 `hasOwnProperty` 過濾
