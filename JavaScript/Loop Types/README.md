@@ -176,3 +176,38 @@ for (const key in user) {
 - 若用於陣列，會取得索引值字串 (不推薦)
 
 - 會列出原型鏈上的屬性，需加上 `hasOwnProperty` 過濾
+
+<br />
+
+## `Array.prototype.forEach()` (陣列迭代函式)
+
+是一個陣列方法，接受 callback function，對陣列每一個元素執行該函式。
+
+### 語法結構
+
+```
+array.forEach((value, index, array) => {
+  // 執行動作
+});
+```
+
+### 範例
+
+```
+const scores = [90, 80, 100];
+scores.forEach((score, index) => {
+  console.log(`第 ${index + 1} 個分數是 ${score}`);
+});
+```
+
+### 試用情境
+
+- 陣列處理，像是顯示資料、統計等
+
+- 常與 DOM 操作、渲染列表搭配使用
+
+### 補充
+
+- 無法使用 `break` 或 `continue`
+
+- 無回傳值 (不同於 `map()`)
