@@ -238,3 +238,13 @@ scores.forEach((score, index) => {
 | 針對「鍵」遍歷 | `for...in` (物件) |
 | 陣列資料迭代處理 | `forEach()`、`map()` |
 | 高階函式使用 (過濾、計算) | `filter()`、`reduce()` |
+
+<br />
+
+## 總結
+
+- `for` 與 `while` 是基本的迴圈控制工具，靈活但稍繁瑣。
+
+- `for...of` 與 `for...in` 是語法糖，針對物件與陣列有專用用途。
+
+- `forEach()` 與 `map()` 更符合現代 JavaScript 的寫法。
