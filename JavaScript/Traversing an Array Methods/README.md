@@ -115,3 +115,38 @@ for (const [index, value] of arr.entries()) {
   console.log(index, value);
 }
 ```
+
+<br />
+
+## `forEach()` 方法 (ES5)
+
+對陣列每個元素執行一次回呼函式，無回傳值。
+
+### 語法結構
+
+```
+array.forEach((value, index, array) => {
+  // 處理每一個元素
+});
+```
+
+### 語法範例
+
+```
+const arr = [1, 2, 3];
+arr.forEach((value, index) => {
+  console.log(`第 ${index + 1} 個是 ${value}`);
+});
+```
+
+### 試用情境
+
+- 顯示資料、渲染 DOM、console.log 等副作用操作
+
+- 資料不需轉換或回傳
+
+### 補充建議：
+
+- 無法使用 `break` / `continue` 跳出
+
+- 不會回傳新陣列 (不同於 `map`)
