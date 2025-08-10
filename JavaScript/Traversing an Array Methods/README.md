@@ -76,3 +76,42 @@ for (let i = 0; i < arr.length; i++) {
 - 冗長但具備最高自由度
 
 - 適用於複雜情況與條件流程控制
+
+<br />
+
+## `for...of` 迴圈 (ES6 可疊代值)
+
+針對「可疊代物件」的遍歷方式，最常用於陣列與字串。
+
+### 語法結構
+
+```
+for (const value of array) {
+  // 處理每一個值
+}
+```
+
+### 語法範例
+
+```
+const arr = ['a', 'b', 'c'];
+for (const value of arr) {
+  console.log(value);
+}
+```
+
+### 試用情境
+
+- 不需要索引，只需處理值
+
+- 語法簡潔、可讀性佳
+
+### 補充建議：
+
+- 若需索引，使用 `array.entries()` 搭配解構
+
+```
+for (const [index, value] of arr.entries()) {
+  console.log(index, value);
+}
+```
