@@ -181,3 +181,34 @@ const squared = nums.map(n => n * n);   // [1, 4, 9]
 ### 補充建議：
 
 - 一定要有 `return`，否則新陣列會是 undefined
+
+<br />
+
+## `filter()`
+
+篩選陣列中符合條件的元素，並建立新的陣列。
+
+### 語法結構
+
+```
+const filteredArray = array.filter((value, index, array) => {
+  return 條件判斷式 (true/false);
+});
+```
+
+### 語法範例
+
+```
+const nums = [1, 2, 3, 4];
+const even = nums.filter(n => n % 2 === 0);   // [2, 4]
+```
+
+### 試用情境
+
+- 從陣列中挑出特定條件資料 (如果找出未完成任務)
+
+### 補充建議：
+
+- 保留原始陣列不變
+
+- 回傳的是一個新陣列
