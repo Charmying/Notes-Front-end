@@ -212,3 +212,32 @@ const even = nums.filter(n => n % 2 === 0);   // [2, 4]
 - 保留原始陣列不變
 
 - 回傳的是一個新陣列
+
+<br />
+
+## `reduce()`
+
+將陣列所有值「累加或聚合」成一個結果 (數字、字串、物件 等)。
+
+### 語法結構
+
+```
+const result = array.reduce((accumulator, currentValue, index, array) => {
+  return 累加後結果;
+}, 初始值);
+```
+
+### 語法範例
+
+```
+const nums = [1, 2, 3];
+const total = nums.reduce((sum, n) => sum + n, 0);   // 6
+```
+
+### 試用情境
+
+- 計算總和、轉成物件、統計資料等
+
+### 補充建議：
+
+- 強大但需較熟練，初學者可先用 `map` + `filter` 組合
