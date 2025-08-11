@@ -150,3 +150,34 @@ arr.forEach((value, index) => {
 - 無法使用 `break` / `continue` 跳出
 
 - 不會回傳新陣列 (不同於 `map`)
+
+<br />
+
+## `map()`
+
+對每個元素執行處理並「建立一個新的陣列」回傳。
+
+### 語法結構
+
+```
+const newArray = array.map((value, index, array) => {
+  return 處理後的新值;
+});
+```
+
+### 語法範例
+
+```
+const nums = [1, 2, 3];
+const squared = nums.map(n => n * n);   // [1, 4, 9]
+```
+
+### 試用情境
+
+- 將原始資料轉換為新格式
+
+- 保持資料純粹性與不可變性
+
+### 補充建議：
+
+- 一定要有 `return`，否則新陣列會是 undefined
