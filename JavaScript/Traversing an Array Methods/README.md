@@ -271,3 +271,34 @@ const found = users.find(u => u.id === 2);   // {id: 2}
 ### 補充建議：
 
 - 找不到時分別回傳 undefined / -1
+
+<br />
+
+## `some()` / `every()`
+
+- `some()`：判斷是否「至少有一個」符合條件。
+
+- `every()`：判斷是否「全部」符合條件。
+
+### 語法結構
+
+```
+array.some(item => 條件)
+array.every(item => 條件)
+```
+
+### 語法範例
+
+```
+const nums = [1, 3, 5];
+console.log(nums.some(n => n > 4));   // true
+console.log(nums.every(n => n % 2 === 1));   // true
+```
+
+### 試用情境
+
+- 表單驗證 (所有欄位是否都填寫)、列表中是否有某種狀態
+
+### 補充建議：
+
+- 回傳布林值，常與程式運算結合
