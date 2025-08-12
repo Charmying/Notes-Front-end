@@ -302,3 +302,38 @@ console.log(nums.every(n => n % 2 === 1));   // true
 ### 補充建議：
 
 - 回傳布林值，常與程式運算結合
+
+<br />
+
+## `entries()` / `keys()` / `values()` (ES6 Iterator)
+
+- `entries()`：同時取得索引和值的 iterable。
+
+- `keys()`：只取索引。
+
+- `values()`：只取值。
+
+### 語法結構
+
+```
+for (const [i, v] of array.entries()) { }
+for (const i of array.keys()) { }
+for (const v of array.values()) { }
+```
+
+### 語法範例
+
+```
+const arr = ['x', 'y'];
+for (const [i, v] of arr.entries()) {
+  console.log(i, v);
+}
+```
+
+### 試用情境
+
+- 需要「索引和值」但又希望語法簡潔
+
+### 補充建議：
+
+- 搭配 `for...of` 使用最方便
