@@ -241,3 +241,33 @@ const total = nums.reduce((sum, n) => sum + n, 0);   // 6
 ### 補充建議：
 
 - 強大但需較熟練，初學者可先用 `map` + `filter` 組合
+
+<br />
+
+## `find()` / `findIndex()`
+
+- `find()`：回傳第一個符合條件的值。
+
+- `findIndex()`：回傳第一個符合條件的索引。
+
+### 語法結構
+
+```
+array.find(item => 條件)
+array.findIndex(item => 條件)
+```
+
+### 語法範例
+
+```
+const users = [{id: 1}, {id: 2}];
+const found = users.find(u => u.id === 2);   // {id: 2}
+```
+
+### 試用情境
+
+- 搜尋資料庫中是否有某筆資料符合條件
+
+### 補充建議：
+
+- 找不到時分別回傳 undefined / -1
