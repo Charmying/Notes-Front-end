@@ -357,3 +357,13 @@ for (const key in arr) {
 ### 補充建議：
 
 - `for...in` 會遍歷原型鏈上的屬性與自訂屬性，容易出錯
+
+<br />
+
+## 進階方法補充
+
+| 方法 | 功能 | 範例 |
+|-|-|-|
+| `Array.from()` | 將類陣列物件轉為陣列，並可遍歷 | `Array.from([1,2], x => x * 2)` |
+| `flatMap()` | `map()` 並扁平化一層 | `[1,2].flatMap(n => [n, n])   // [1,1,2,2]` |
+| `for await...of` | 用於 async iterable (例如：fetch stream) | `for await (const item of asyncGen()) {}` |
