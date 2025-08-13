@@ -337,3 +337,23 @@ for (const [i, v] of arr.entries()) {
 ### 補充建議：
 
 - 搭配 `for...of` 使用最方便
+
+<br />
+
+##  不建議的遍歷方法 `for...in`
+
+用來列舉物件屬性，但也可遍歷陣列的「索引字串」(不建議)。
+
+### 錯誤使用範例
+
+```
+const arr = [1, 2];
+arr.foo = 'extra';
+for (const key in arr) {
+  console.log(key);   // 0, 1, foo
+}
+```
+
+### 補充建議：
+
+- `for...in` 會遍歷原型鏈上的屬性與自訂屬性，容易出錯
