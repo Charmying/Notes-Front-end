@@ -367,3 +367,18 @@ for (const key in arr) {
 | `Array.from()` | 將類陣列物件轉為陣列，並可遍歷 | `Array.from([1,2], x => x * 2)` |
 | `flatMap()` | `map()` 並扁平化一層 | `[1,2].flatMap(n => [n, n])   // [1,1,2,2]` |
 | `for await...of` | 用於 async iterable (例如：fetch stream) | `for await (const item of asyncGen()) {}` |
+
+<br />
+
+## 總結
+
+| 使用目的 | 建議使用方法 |
+|:-:|:-:|
+| 有索引需求 | `for`、`entries()` |
+| 只需取值 | `for...of`、`forEach()` |
+| 建立新陣列 | `map()` |
+| 篩選特定元素 | `filter()` |
+| 資料累加 | `reduce()` |
+| 搜尋特定值 | `find()` / `findIndex()` |
+| 驗證條件 | `some()` / `every()` |
+| 處理非同步串流| `for await...of` (進階) |
