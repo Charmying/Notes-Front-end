@@ -4,6 +4,24 @@
 
 以下是 JavaScript 的 Loop Types 整理。
 
+- [`for` Loop](#for-loop)
+
+- [`while` Loop](#while-loop-條件迴圈)
+
+- [`do...while` Loop](#dowhile-loop-先做再判斷)
+
+- [`for...of` Loop](#forof-loop-es6)
+
+- [`for...in` Loop](#forin-loop)
+
+- [`Array.prototype.forEach()`](#arrayprototypeforeach-陣列迭代函式)
+
+- [其他函數式方法](#其他函數式方法-非傳統迴圈)
+
+- [各迴圈使用建議總整理](#各迴圈使用建議總整理)
+
+- [總結](#總結)
+
 <br />
 
 ## `for` Loop
@@ -36,7 +54,7 @@ for (let i = 0; i < 5; i++) {
 
 - `for` 是同步執行。
 
-- 常與 `break` (中止) 和 continue (跳過本次) 搭配使用。
+- 常與 `break` (中止) 和 `continue` (跳過本次) 搭配使用。
 
 <br />
 
@@ -223,7 +241,7 @@ scores.forEach((score, index) => {
 | `map()` | 對每個元素運算並回傳新陣列 | 新陣列 |
 | `filter()` | 篩選符合條件的元素 | 新陣列 |
 | `reduce()` | 累加或累計計算 | 累加結果 |
-| `some()` / `every()` | 驗證是否有某些或所有元素符合條件 | Boolean |
+| `some()`/`every()` | 驗證是否有某些或所有元素符合條件 | Boolean |
 
 <br />
 
