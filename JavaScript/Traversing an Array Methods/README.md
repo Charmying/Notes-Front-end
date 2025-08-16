@@ -26,6 +26,30 @@
 
 以下是 JavaScript 的陣列 (Array) 遍歷方法整理。
 
+- [`for` Loop](#for-loop-傳統索引遍歷)
+
+- [`for...of` Loop](#forof-Loop-es6-可疊代值)
+
+- [`forEach()`](#foreach-es5)
+
+- [`map()`](#map)
+
+- [`filter()`](#filter)
+
+- [`reduce()`](#reduce)
+
+- [`find()`/`findIndex()`](#findfindindex)
+
+- [`some()`/`every()`](#someevery)
+
+- [`entries()`/`keys()`/`values()`](#entrieskeysvalues-es6-iterator)
+
+- [不建議的遍歷方法 `for...in`](#不建議的遍歷方法-forin)
+
+- [進階方法補充](#進階方法補充)
+
+- [總結](#總結)
+
 <br />
 
 ## 主流遍歷方法
@@ -33,14 +57,14 @@
 | 方法 | 是否可取索引 | 是否可中斷 | 是否回傳新值 | 適用情境 |
 |-|-|-|-|-|
 | `for` | ✅ | ✅ | ❌ | 需要索引或控制流程 |
-| `for...of` | ❌ (可搭配 entries) | ✅ | ❌ | 簡單取值 |
+| `for...of` | ❌ (可搭配 `entries()`) | ✅ | ❌ | 簡單取值 |
 | `forEach()` | ✅ | ❌ | ❌ | 每個元素執行副作用 |
 | `map()` | ✅ | ❌ | ✅ 新陣列 | 對每個值轉換 |
 | `filter()` | ✅ | ❌ | ✅ 子陣列 | 篩選條件符合者 |
 | `reduce()` | ✅ | ❌ | ✅ 聚合值 | 總和、計算、合併 |
-| `find()` / `findIndex()` | ✅ | ✅ | ✅ 符合條件第一項 | 搜尋首項 |
-| `some()` / `every()` | ✅ | ✅ | ✅ Boolean | 是否符合條件 |
-| `entries()` / `keys()` / `values()` | ✅ (entries) | ✅ | ❌ | 可讀性高、迭代索引或值 |
+| `find()`/`findIndex()` | ✅ | ✅ | ✅ 符合條件第一項 | 搜尋首項 |
+| `some()`/`every()` | ✅ | ✅ | ✅ Boolean | 是否符合條件 |
+| `entries()`/`keys()`/`values()` | ✅ (entries) | ✅ | ❌ | 可讀性高、迭代索引或值 |
 
 <br />
 
@@ -69,7 +93,7 @@ for (let i = 0; i < arr.length; i++) {
 
 - 需要索引來處理元素或搭配條件判斷
 
-- 需要跳出迴圈 (break)、跳過 (continue)
+- 需要跳出迴圈 (`break`)、跳過 (`continue`)
 
 ### 補充建議
 
@@ -79,7 +103,7 @@ for (let i = 0; i < arr.length; i++) {
 
 <br />
 
-## `for...of` 迴圈 (ES6 可疊代值)
+## `for...of` Loop (ES6 可疊代值)
 
 針對「可疊代物件」的遍歷方式，最常用於陣列與字串。
 
@@ -118,7 +142,7 @@ for (const [index, value] of arr.entries()) {
 
 <br />
 
-## `forEach()` 方法 (ES5)
+## `forEach()` (ES5)
 
 對陣列每個元素執行一次回呼函式，無回傳值。
 
@@ -141,15 +165,15 @@ arr.forEach((value, index) => {
 
 ### 試用情境
 
-- 顯示資料、渲染 DOM、console.log 等副作用操作
+- 顯示資料、渲染 DOM、`console.log` 等副作用操作
 
 - 資料不需轉換或回傳
 
 ### 補充建議：
 
-- 無法使用 `break` / `continue` 跳出
+- 無法使用 `break`/`continue` 跳出
 
-- 不會回傳新陣列 (不同於 `map`)
+- 不會回傳新陣列 (不同於 `map()`)
 
 <br />
 
@@ -240,11 +264,11 @@ const total = nums.reduce((sum, n) => sum + n, 0);   // 6
 
 ### 補充建議：
 
-- 強大但需較熟練，初學者可先用 `map` + `filter` 組合
+- 強大但需較熟練，初學者可先用 `map()` + `filter()` 組合
 
 <br />
 
-## `find()` / `findIndex()`
+## `find()`/`findIndex()`
 
 - `find()`：回傳第一個符合條件的值。
 
@@ -270,11 +294,11 @@ const found = users.find(u => u.id === 2);   // {id: 2}
 
 ### 補充建議：
 
-- 找不到時分別回傳 undefined / -1
+- 找不到時分別回傳 undefined 和 -1
 
 <br />
 
-## `some()` / `every()`
+## `some()`/`every()`
 
 - `some()`：判斷是否「至少有一個」符合條件。
 
@@ -305,7 +329,7 @@ console.log(nums.every(n => n % 2 === 1));   // true
 
 <br />
 
-## `entries()` / `keys()` / `values()` (ES6 Iterator)
+## `entries()`/`keys()`/`values()` (ES6 Iterator)
 
 - `entries()`：同時取得索引和值的 iterable。
 
