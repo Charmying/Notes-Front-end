@@ -136,7 +136,7 @@
 
 ### `get` 和 `set`
 
-- `get` 和 `set` 屬性用來定義 `getter` 和 `setter` 函式，讓 property 可以透過存取器 (accessor) 方法來取得或設定值。
+- `get` 和 `set` 屬性用來定義 `getter` 和 `setter` 函式，讓 property 可以透過存取器 (Accessor) 方法來取得或設定值。
 
 - 這兩個方法提供了更靈活的方式來控制 property 的讀取和賦值行為。
 
@@ -388,7 +388,7 @@ console.log(person.hasOwnProperty('toString'));   // false
 
 ## `Object.getOwnPropertyDescriptor()`
 
-`Object.getOwnPropertyDescriptor()` 是用來取得物件上指定 property 的描述符 (descriptor) 的靜態方法。透過這個方法可以瞭解物件 property 的特性，例如：value、是否可 enumerable (列舉)、是否可 writable (修改)、是否可 configurable (刪除)，以及 `getter` 和 `setter` 函式。
+`Object.getOwnPropertyDescriptor()` 是用來取得物件上指定 property 的描述符 (Descriptor) 的靜態方法。透過這個方法可以瞭解物件 property 的特性，例如：value、是否可 enumerable (列舉)、是否可 writable (修改)、是否可 configurable (刪除)，以及 `getter` 和 `setter` 函式。
 
 基本語法：
 
@@ -479,7 +479,7 @@ console.log(descriptor);
 
 ## `Object.getOwnPropertyDescriptors()`
 
-`Object.getOwnPropertyDescriptors()` 是一個用來取得物件所有自身 property 的描述符 (descriptor) 的靜態方法。`Object.getOwnPropertyDescriptors()` 會回傳一個包含每個 property 描述符的物件，這樣可以獲取所有 property 的細節。
+`Object.getOwnPropertyDescriptors()` 是一個用來取得物件所有自身 property 的描述符 (Descriptor) 的靜態方法。`Object.getOwnPropertyDescriptors()` 會回傳一個包含每個 property 描述符的物件，這樣可以獲取所有 property 的細節。
 
 `Object.getOwnPropertyDescriptors()` 與 `Object.getOwnPropertyDescriptor()` 類似，但後者只能針對單一 property，而 `Object.getOwnPropertyDescriptors()` 則能一次取回全部自身 property 的描述符。
 
@@ -538,9 +538,9 @@ console.log(descriptors);
 
 - `configurable`：布林值，表示 property 是否可被刪除或重新定義。
 
-- `get`：property 的 `getter` 函式（如果有的話）。
+- `get`：property 的 `getter` 函式 (如果有的話）。
 
-- `set`：property 的 `setter` 函式（如果有的話）。
+- `set`：property 的 `setter` 函式 (如果有的話）。
 
 ### 注意事項
 
@@ -567,7 +567,7 @@ console.log(clone);   // 與 `person` 物件相同的屬性與屬性特性
 
 ## `Object.getPrototypeOf()`
 
-`Object.getPrototypeOf()` 是一個用來取得指定物件的原型 (prototype) 的靜態方法。原型是指物件繼承的方法和屬性所在的物件，這是 JavaScript 繼承機制的基礎。如果物件是透過某個構造函數 (constructor) 或使用 `Object.create()` 建立的，`Object.getPrototypeOf()` 就能回傳該物件的原型。
+`Object.getPrototypeOf()` 是一個用來取得指定物件的原型 (Prototype) 的靜態方法。原型是指物件繼承的方法和屬性所在的物件，這是 JavaScript 繼承機制的基礎。如果物件是透過某個構造函數 (constructor) 或使用 `Object.create()` 建立的，`Object.getPrototypeOf()` 就能回傳該物件的原型。
 
 基本語法：
 
@@ -627,7 +627,7 @@ console.log(Object.getPrototypeOf(student) === person);   // true
 
 ## `Object.setPrototypeOf()`
 
-`Object.setPrototypeOf()` 是一個用來設定指定物件的原型 (prototype) 的靜態方法。透過這個方法可以動態修改物件的原型，進而改變物件的繼承鏈和其行為。物件的原型決定了能夠繼承哪些屬性和方法，因此 `Object.setPrototypeOf()` 可以更靈活控制物件的繼承關係。
+`Object.setPrototypeOf()` 是一個用來設定指定物件的原型 (Prototype) 的靜態方法。透過這個方法可以動態修改物件的原型，進而改變物件的繼承鏈和其行為。物件的原型決定了能夠繼承哪些屬性和方法，因此 `Object.setPrototypeOf()` 可以更靈活控制物件的繼承關係。
 
 基本語法：
 
@@ -869,7 +869,7 @@ console.log(values);   // ['Charmy', 28, 'Taichung']
 
 ## `Object.entries()`
 
-`Object.entries()` 是用來取得物件中所有可 `enumerable` (列舉) property 的鍵值對 (key-value pairs) 的靜態方法。`Object.entries()` 會回傳一個二維陣列 (array of arrays)，每個子陣列包含兩個元素：第一個元素是 property 的名稱 (key)，第二個元素是 property 的值 (value)。
+`Object.entries()` 是用來取得物件中所有可 `enumerable` (列舉) property 的鍵值對 (key-value pairs) 的靜態方法。`Object.entries()` 會回傳一個二維陣列 (Array of Arrays)，每個子陣列包含兩個元素：第一個元素是 property 的名稱 (key)，第二個元素是 property 的值 (value)。
 
 
 基本語法：
@@ -971,7 +971,7 @@ console.log(obj);   // { name: 'Charmy', age: 28, city: 'Taichung' }
 
 ## `Object.assign()`
 
-`Object.assign()` 是用來將一個或多個來源物件 (source objects) 的所有可 `enumerable` (列舉) property 複製到目標物件 (target object) 的靜態方法。`Object.assign()` 會修改並回傳目標物件，使其可以輕鬆合併多個物件或拷貝物件的 property。
+`Object.assign()` 是用來將一個或多個來源物件 (Source Objects) 的所有可 `enumerable` (列舉) property 複製到目標物件 (Target Object) 的靜態方法。`Object.assign()` 會修改並回傳目標物件，使其可以輕鬆合併多個物件或拷貝物件的 property。
 
 基本語法：
 
@@ -994,7 +994,7 @@ console.log(target);   // {name: 'Charmy', age: 28, city: 'Taichung'}
 
 ### 注意事項
 
-- `Object.assign()` 是淺拷貝 (shallow copy)，也就是說，如果來源物件中的 property 是物件或陣列等複雜資料類型，那麼拷貝的是引用，而不是值。
+- `Object.assign()` 是淺拷貝 (Shallow Copy)，也就是說，如果來源物件中的 property 是物件或陣列等複雜資料類型，那麼拷貝的是引用，而不是值。
 
 - 如果目標物件中已經存在與來源物件相同的 property 名稱 (key)，來源物件的 property 會覆蓋目標物件中的 property。
 
@@ -1070,7 +1070,7 @@ console.log(Object.is(-0, -0));   // true
 
 ## `Object.create()`
 
-`Object.create()` 是用來建立新物件的靜態方法。這個新物件的原型 (prototype) 可以自己指定，並且可以在建立時直接添加新的 property。透過 `Object.create()` 可以更靈活控制物件的繼承關係，特別是在需要建立具有特定原型的物件時。
+`Object.create()` 是用來建立新物件的靜態方法。這個新物件的原型 (Prototype) 可以自己指定，並且可以在建立時直接添加新的 property。透過 `Object.create()` 可以更靈活控制物件的繼承關係，特別是在需要建立具有特定原型的物件時。
 
 基本語法：
 
@@ -1080,7 +1080,7 @@ Object.create(proto, propertiesObject)
 
 - `proto`：新物件的原型，可以是另一個物件或 null。如果傳入 null，新物件將不會繼承任何東西。
 
-- `propertiesObject` (可選)：一個用來定義新物件 property 的物件。這個物件的格式與 `Object.defineProperties()` 所使用的格式相同，可以設定 property 的描述符 (descriptor)。
+- `propertiesObject` (可選)：一個用來定義新物件 property 的物件。這個物件的格式與 `Object.defineProperties()` 所使用的格式相同，可以設定 property 的描述符 (Descriptor)。
 
 範例：
 
@@ -1128,13 +1128,13 @@ member.greet();   // Hello!
 
 - 如果 `proto` 傳入 null，新物件將沒有原型，因此不會繼承任何來自 Object 的方法，例如：`toString()`。
 
-- `Object.create()` 提供了一種更加直接和清晰的方式來設定物件的原型，相比於使用建構子函式 (constructor function) 來說更為簡單。
+- `Object.create()` 提供了一種更加直接和清晰的方式來設定物件的原型，相比於使用建構子函式 (Constructor Function) 來說更為簡單。
 
 ### 應用場景
 
 - 使用 `Object.create()` 可以用來建立物件之間的繼承關係，並且在建立物件時可以精確定義 property。
 
-- 適合用於需要定制化物件原型的情況，例如：實作原型繼承 (prototypal inheritance)。
+- 適合用於需要定制化物件原型的情況，例如：實作原型繼承 (Prototypal Inheritance)。
 
 ### 總結
 
@@ -1295,7 +1295,7 @@ console.log(Object.isSealed(car));   // true
 
 ## `Object.freeze()`
 
-`Object.freeze()` 是用來凍結物件的方法，讓物件的內容無法被修改。一旦物件被凍結，就無法對它新增、刪除或更改任何的 property，也無法更改這些 property 的值。簡單來說，`Object.freeze()` 讓物件變成不可變 (immutable)。
+`Object.freeze()` 是用來凍結物件的方法，讓物件的內容無法被修改。一旦物件被凍結，就無法對它新增、刪除或更改任何的 property，也無法更改這些 property 的值。簡單來說，`Object.freeze()` 讓物件變成不可變 (Immutable)。
 
 基本語法：
 
