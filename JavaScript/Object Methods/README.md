@@ -538,9 +538,9 @@ console.log(descriptors);
 
 - `configurable`：布林值，表示 property 是否可被刪除或重新定義。
 
-- `get`：property 的 `getter` 函式 (如果有的話）。
+- `get`：property 的 `getter` 函式 (如果有的話)。
 
-- `set`：property 的 `setter` 函式 (如果有的話）。
+- `set`：property 的 `setter` 函式 (如果有的話)。
 
 ### 注意事項
 
@@ -1037,8 +1037,8 @@ Object.is(value1, value2)
 ```
 console.log(Object.is('hello', 'hello'));   // true
 console.log(Object.is('hello', 'Hello'));   // false
-console.log(Object.is({}, {}));   // false（不同的物件實例）
-console.log(Object.is([], []));   // false（不同的陣列實例）
+console.log(Object.is({}, {}));   // false (不同的物件實例)
+console.log(Object.is([], []));   // false (不同的陣列實例)
 console.log(Object.is(NaN, NaN));   // true
 console.log(Object.is('', ''));   // true
 console.log(Object.is(1, 1));   // true
