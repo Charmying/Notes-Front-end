@@ -190,3 +190,106 @@ Math.round(x);
 ### 總結
 
 `Math.round(x)` 是一個非常常用的四捨五入方法，能夠依據小數部分自動決定向上或向下取整數，無論是正數還是負數都能夠準確返回最接近的整數。與 `Math.floor(x)` 和 `Math.ceil(x)` 等取整數方法相比，`Math.round(x)` 更具靈活性，特別適合需要進行四捨五入的情境。
+
+<br />
+
+## Math.floor(x)
+
+`Math.floor(x)` 是 JavaScript 中用來將數字向下取整數的內建方法，也就是將數字「無條件捨去小數部分」，返回比原數字小或相等的整數。
+
+### 基本語法
+
+```
+Math.floor(x);
+```
+
+- x：要進行向下取整數的數字。
+
+### 詳細說明
+
+- 向下取整數的規則
+
+    不論小數部分是多少，只要存在小數，`Math.floor(x)` 都會將數字向負無窮大到取整數。
+
+    如果 x 本身已經是整數，結果就會是該數字本身，不會進行任何變化。
+
+    - 如果 x 是正數，`Math.floor(x)` 的效果類似於「無條件捨去」。
+
+    - 如果 x 是負數，會返回比 x 更小的整數。
+
+- 範例
+
+    - 當 x 是正數
+
+		```
+		console.log(Math.floor(4.7));   // 4
+		console.log(Math.floor(9.1));   // 9
+		```
+
+        `Math.floor(4.7)` 將小數點後的 0.7 移除，向下取整數為 4。
+
+        `Math.floor(9.1)` 將小數點後的 0.1 移除，向下取整數為 9。
+
+    - 當 x 是負數
+
+		```
+		console.log(Math.floor(-3.7));   // -4
+		console.log(Math.floor(-2.1));   // -3
+		```
+
+        `Math.floor(-3.7)` 將小數點後的 0.7 移除，向下取整數為 -4 (不是 -3，因為 -4 是小於 -3.7 的最大整數)。
+
+        `Math.floor(-2.1)` 將小數點後的 0.1 移除，向下取整數為 -3。
+
+- 應用場景
+
+    - 隨機數生成
+
+        `Math.floor(x)` 常與 `Math.random()` 搭配使用，用來生成一個範圍內的隨機整數。
+
+        例如：生成 0 到 9 之間的隨機整數
+
+        ```
+        let randomInt = Math.floor(Math.random() * 10);
+        console.log(randomInt);   // 結果可能是 0 到 9 之間的隨機整數
+        ```
+
+    - 分頁功能
+
+        當處理分頁顯示資料時，可能需要計算總頁數。
+
+        ```
+        let totalItems = 53;
+		let itemsPerPage = 10;
+		let totalPages = Math.floor(totalItems / itemsPerPage);
+		console.log(totalPages);   // 5
+        ```
+
+        在這個範例中，儘管總共 53 筆資料，但每頁只能顯示 10 筆，因此向下取整數的結果是 5 頁。
+
+- 與其他取整數方法的差異
+
+    - `Math.round(x)`：將數字四捨五入，依據小數點後的數值來決定向上或向下取整數。
+
+    - `Math.floor(x)`：將數字向下取整數，不論小數是多少，結果永遠是最接近的較小整數。
+
+    - `Math.ceil(x)`：將數字向上取整數，不論小數是多少，結果永遠是最接近的較大整數。
+
+    - `Math.trunc(x)`：直接捨棄小數部分，不進行四捨五入。
+
+    範例對比
+
+    ```
+    console.log(Math.round(4.5));   // 5
+    console.log(Math.floor(4.5));   // 4
+    console.log(Math.ceil(4.5));   // 5
+    console.log(Math.trunc(4.5));   // 4
+    ```
+
+### 常見誤區
+
+- 負數的處理：有些人可能會誤以為 `Math.floor(x)` 對負數會「無條件捨去」，但其實是向負無窮大取整數。
+
+### 總結
+
+`Math.floor(x)` 的主要功能是將數字向下取整數，適用於很多需要處理整數的情境，例如：隨機數生成、分頁計算等。與 `Math.ceil(x)` 和 `Math.round(x)` 相比，`Math.floor(x)` 更加注重數值的向下捨去。
