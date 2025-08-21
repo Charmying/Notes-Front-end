@@ -395,3 +395,84 @@ Math.ceil(x);
 ### 總結
 
 `Math.ceil(x)` 是用來將數字向上取整數的工具，無論小數部分是多小，只要不是整數，結果都會進位到下一個整數。`Math.ceil(x)` 的應用範圍很廣，尤其在處理需要進位或確保整數結果的情況。與 `Math.floor(x)` 和 `Math.round(x)` 等取整數方法相比，`Math.ceil(x)` 的最大特點就是永遠向上取整數，特別是在負數的情況下，能夠精準進行向上取整數。
+
+<br />
+
+## Math.trunc(x)
+
+`Math.trunc(x)` 是 JavaScript 中用來去掉數字的小數部分，並只保留整數部分的內建方法。簡單來說，`Math.trunc(x)` 的作用是直接截取數字小數點之前的整數，不進行任何四捨五入或取整數操作。
+
+### 基本語法
+
+```
+Math.trunc(x);
+```
+
+- x：是要進行截取小數的數字。
+
+### 詳細說明
+
+- 截取小數部分的規則
+
+    `Math.trunc(x)` 會直接捨去小數部分，不管小數是正數還是負數。
+
+    如果 x 是整數，那結果就是 x 本身，沒有任何變化。
+
+- 範例
+
+    - 當 x 是正數
+
+    	```
+		console.log(Math.trunc(4.9));   // 4
+		console.log(Math.trunc(4.1));   // 4
+		console.log(Math.trunc(5.0));   // 5
+    	```
+
+    - 當 x 是負數
+
+        ```
+		console.log(Math.trunc(-4.9));   // -4
+		console.log(Math.trunc(-4.1));   // -4
+		console.log(Math.trunc(-5.0));   // -5
+        ```
+
+- 應用場景
+
+    - 截取整數部分
+
+        `Math.trunc(x)` 在需要忽略數字的小數只保留整數時是最直接的方法。
+
+    	```
+    	let price = 9.99;
+		let integerPrice = Math.trunc(price);
+		console.log(integerPrice);   // 9
+    	```
+
+- 與其他取整數方法的差異
+
+    - `Math.round(x)`：將數字四捨五入，依據小數點後的數值來決定向上或向下取整數。
+
+    - `Math.floor(x)`：將數字向下取整數，不論小數是多少，結果永遠是最接近的較小整數。
+
+    - `Math.ceil(x)`：將數字向上取整數，不論小數是多少，結果永遠是最接近的較大整數。
+
+    - `Math.trunc(x)`：直接捨棄小數部分，不進行四捨五入。
+
+    範例對比
+
+    ```
+    console.log(Math.round(4.5));   // 5
+    console.log(Math.floor(4.5));   // 4
+    console.log(Math.ceil(4.5));   // 5
+    console.log(Math.trunc(4.5));   // 4
+    ```
+
+### 常見誤區
+
+- `Math.trunc(x)` 不會四捨五入：有些人可能會誤以為 `Math.trunc(x)` 會進行某種取整數操作，實際上只是簡單捨去小數部分，而不是根據數字的大小進行向上或向下取整數。
+
+- 負數處理：與 `Math.floor()` 相比，`Math.trunc(x)` 不會將負數向負無窮大方向取整數，而是簡單捨去負數的小數部分。因此，`Math.trunc(-4.7)` 的結果是 -4，而不是 -5。
+
+### 總結
+
+`Math.trunc(x)` 是用來去掉數字小數部分用工具，不進行任何四捨五入或取整數，只是單純截取整數部分。無論是正數還是負數，都會直接捨去小數點後的數字。
