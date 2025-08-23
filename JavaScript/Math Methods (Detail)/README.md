@@ -596,3 +596,119 @@ Math.abs(x);
 `Math.abs(x)` 是一個用來取得數字絕對值的簡單工具，會將任何正數或負數轉換為非負數，非常適合用於計算數字之間的差距或處理實際物理量。
 
 `Math.abs(x)` 不會影響數字的小數部分，也不會對 NaN 或非數值資料進行處理。
+
+<br />
+
+## Math.sign(x)
+
+`Math.sign(x)` 是 JavaScript 中用來判斷一個數字符號的內建方法，會根據傳入數字不同而返回相對應的結果，具體可以分為以下五種
+
+- 正數 -> 1
+
+- 負數 -> -1
+
+- 正 0 -> 0
+
+- 負 0 -> -0
+
+- NaN (非數字) -> NaN
+
+### 基本語法
+
+```
+Math.sign(x);
+```
+
+- x：想要判斷符號的數字。
+
+### 詳細說明
+
+- 符號判斷的規則
+
+    `Math.sign(x)` 根據數字的符號來返回對應的結果，不改變數字本身的大小或精度，主要是用來快速判斷一個數字是正數還是負數，或是否為 0。
+
+    `Math.sign(x)` 對 +0 和 -0 做了區分。
+
+- 範例
+
+    - 當 x 是正數
+
+		```
+		console.log(Math.sign(5));   // 1
+		console.log(Math.sign(3.2));   // 1
+		console.log(Math.sign('123'));   // 1
+		```
+
+        正數的符號為 1，不論是整數還是小數。
+
+    - 當 x 是負數
+
+		```
+		console.log(Math.sign(-5));   // -1
+		console.log(Math.sign(-3.2));   // -1
+		console.log(Math.sign('-123'));   // -1
+		```
+
+        負數的符號為 -1，不論負數是整數還是小數。
+
+    - 當 x 是 0 或 -0
+
+        ```
+        console.log(Math.sign(0));   // 0
+        console.log(Math.sign('0'));   // 0
+        console.log(Math.sign(-0));   // -0
+        console.log(Math.sign('-0'));   // -0
+        ```
+
+        雖然 +0 和 -0 看起來相同，但 `Math.sign(x)` 會進行區分。在大多數情況下，+0 和 -0 的行為幾乎一致，但在某些運算 (例如：除法) 中可能會產生不同的結果。
+
+    - 當 x 是 NaN (非數字)
+
+        ```
+        console.log(Math.sign(NaN));   // NaN
+        console.log(Math.sign('aaa'));   // NaN
+        ```
+
+- 應用場景
+
+    - 快速判斷數字的符號
+
+        `Math.sign(x)` 常用在需要知道一個數字是正數、負數還是 0 的時候。
+
+        ```
+        let num = -8;
+        if (Math.sign(num) === 1) {
+            console.log('這是正數');
+        } else if (Math.sign(num) === -1) {
+            console.log('這是負數');
+        } else {
+            console.log('這是 0');
+        }
+        ```
+
+    - 配合絕對值進行運算
+    
+        與 `Math.abs(x)` 一起使用時，可以將一個數字的符號與大小分離。
+
+        ```
+		let num = -9.5;
+		let sign = Math.sign(num);
+		let absValue = Math.abs(num);
+		console.log(sign * absValue);   // -9.5
+        ```
+
+        以上方法可以在保留原始符號的情況下，進行其他計算。
+
+### 常見誤區
+
+- 對非數字的處理：如果傳入的是非數值類型，Math.sign(x) 會返回 NaN，因此需要注意確保傳入的值是數字。
+
+    ```
+    console.log(Math.sign("text"));   // NaN
+    ```
+
+### 總結
+
+`Math.sign(x)` 是用來判斷數字符號的實用方法，返回的結果可以幫助快速了解數字是正數、負數還是 0，並且還能區分 +0 和 -0。
+
+`Math.sign(x)` 的應用範圍廣泛，特別是在需要根據數字符號進行條件判斷時，非常方便。與 `Math.abs(x)` 結合使用時，也能靈活處理數字的大小和符號分離操作。
