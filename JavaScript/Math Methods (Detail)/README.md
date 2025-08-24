@@ -712,3 +712,107 @@ Math.sign(x);
 `Math.sign(x)` 是用來判斷數字符號的實用方法，返回的結果可以幫助快速了解數字是正數、負數還是 0，並且還能區分 +0 和 -0。
 
 `Math.sign(x)` 的應用範圍廣泛，特別是在需要根據數字符號進行條件判斷時，非常方便。與 `Math.abs(x)` 結合使用時，也能靈活處理數字的大小和符號分離操作。
+
+<br />
+
+## Math.max(...values)
+
+`Math.max(...values)` 是 JavaScript 中用來找出一組數字中最大值的內建方法，接受多個數值作為參數，並返回其中最大的那個數字。如果沒有任何參數，則返回 -Infinity，表示在空集合中沒有最大值。如果傳入的參數包含 NaN，則返回 NaN。
+
+### 基本語法
+
+```
+Math.max(value1, value2, ..., valueN);
+```
+
+- value1, value2, ..., valueN 是想要比較的數字。
+
+### 詳細說明
+
+- 多個數值比較
+
+    `Math.max(...values)` 可以接受任意數量的數值，並從中找出最大的數。當傳入多個參數時會逐一比較，並返回其中最大的數字。
+
+- 範例
+
+    - 多個正數
+
+        ```
+        console.log(Math.max(1, 3, 5, 7, 9));   // 9
+        ```
+
+    - 多個負數
+
+        ```
+        console.log(Math.max(-3, -7, -10));   // -3
+        ```
+
+    - 混合正數與負數
+
+        ```
+        console.log(Math.max(-1, -5, 10, 0, 8));   // 10
+        ```
+
+    - 無參數的情況
+
+        ```
+        console.log(Math.max());   // -Infinity
+        ```
+
+    - NaN 的情況
+
+        ```
+        console.log(Math.max(1, 2, NaN, 4));   // NaN
+        ```
+
+- 應用場景
+
+    - 比較一組數字的大小
+    
+        `Math.max(...values)` 常被用來快速比較一組數字，找到其中的最大值。
+
+        例如：需要找到一組成績中的最高分
+
+        ```
+        let scores = [70, 85, 92, 88];
+		let highestScore = Math.max(...scores);
+		console.log(highestScore);   // 92
+        ```
+
+        在這個範例中，使用了展開運算符 (`...`)，將陣列轉換成多個參數傳入 `Math.max(...values)`，找到最高的分數。
+
+    - 動態處理資料
+
+        當資料是動態產生時，可以使用 `Math.max(...values)` 找出其中的最大值。
+
+        例如：從一組來自表單輸入的數字中找出最大值
+
+        ```
+        let userInputs = [10, -5, 100, 23];
+		let maxInput = Math.max(...userInputs);
+		console.log(maxInput);   // 100
+        ```
+
+- 與 `Math.min(...values)` 的比較
+
+    - `Math.max(...values)` 返回一組數字中的最大值，而 `Math.min(...values)` 則返回最小值。兩者在功能上是互補的，可以一起使用來同時找到最大值和最小值
+
+        ```
+        let numbers = [3, 7, -2, 0, 15];
+		console.log(Math.max(...numbers));   // 15
+		console.log(Math.min(...numbers));   // -2
+        ```
+
+### 常見誤區
+
+- `Math.max(...values)`  不接受陣列作為參數：`Math.max(...values)`  的參數必須是數字，而不是陣列。如果想從一個陣列中找出最大值，需要使用展開運算符 (`...`) 來將陣列展開成多個數字
+
+    ```
+	let arr = [4, 9, 1];
+	console.log(Math.max(arr));   // NaN
+	console.log(Math.max(...arr));   // 9    
+    ```
+
+### 總結
+
+`Math.max(...values)` 是一個用來找出多個數字中最大值的方法，可以比較任意數量的數字，並返回其中的最大值。常用於數字比較、資料處理等場景。需要注意的是，如果參數中有 NaN，結果會是 NaN，而無參數時則返回 -Infinity。
