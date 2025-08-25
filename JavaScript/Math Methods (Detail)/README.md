@@ -816,3 +816,107 @@ Math.max(value1, value2, ..., valueN);
 ### 總結
 
 `Math.max(...values)` 是一個用來找出多個數字中最大值的方法，可以比較任意數量的數字，並返回其中的最大值。常用於數字比較、資料處理等場景。需要注意的是，如果參數中有 NaN，結果會是 NaN，而無參數時則返回 -Infinity。
+
+<br />
+
+## Math.min(...values)
+
+`Math.min(...values)` 是 JavaScript 中用來找出一組數字中最小值的內建方法，接受多個數值作為參數，並返回其中最小的那個數字。如果沒有任何參數，則返回 -Infinity，表示在空集合中沒有最小值。如果傳入的參數包含 NaN，則返回 NaN。
+
+### 基本語法
+
+```
+Math.min(value1, value2, ..., valueN);
+```
+
+- value1, value2, ..., valueN 是想要比較的數字。
+
+### 詳細說明
+
+- 多個數值比較
+
+    `Math.max(...values)` 可以接受任意數量的數值，並從中找出最小的數。當傳入多個參數時會逐一比較，並返回其中最小的數字。
+
+- 範例
+
+    - 多個正數
+
+        ```
+        console.log(Math.min(3, 7, 1, 9));   // 1
+        ```
+
+    - 多個負數
+
+        ```
+        console.log(Math.min(-8, -5, -10));   // -10
+        ```
+
+    - 混合正數與負數
+
+        ```
+        console.log(Math.min(-3, 5, -1, 2));   // -3
+        ```
+
+    - 無參數的情況
+
+        ```
+        console.log(Math.min());   // -Infinity
+        ```
+
+    - NaN 的情況
+
+        ```
+        console.log(Math.min(1, 2, NaN, 4));   // NaN
+        ```
+
+- 應用場景
+
+    - 比較一組數字的大小
+    
+        `Math.min(...values)` 常被用來快速比較一組數字，找到其中的最小值。
+
+        例如：在一組資料中找出最低價格或最小數量
+
+        ```
+		let prices = [500, 200, 300, 150];
+		let lowestPrice = Math.min(...prices);
+		console.log(lowestPrice);   // 150
+        ```
+
+        在這個範例中，使用了展開運算符 (`...`)，將陣列轉換成多個參數傳入 `Math.min(...values)`，找到最小的價格。
+
+    - 動態處理資料
+
+        當資料是動態產生時，可以使用 `Math.min(...values)` 找出其中的最小值。
+
+        例如：從一組來自表單輸入的數字中找出最小值
+
+        ```
+		let userInputs = [20, -10, 30, 5];
+		let minInput = Math.min(...userInputs);
+		console.log(minInput);   // -10
+        ```
+
+- 與 `Math.max(...values)` 的比較
+
+    - `Math.min(...values)` 返回一組數字中的最小值，而 `Math.max(...values)` 則返回最大值。兩者在功能上是互補的，可以一起使用來同時找到最小值和最大值
+
+        ```
+        let numbers = [3, 7, -2, 0, 15];
+		console.log(Math.min(...numbers));   // -2
+		console.log(Math.max(...numbers));   // 15
+        ```
+
+### 常見誤區
+
+- `Math.min(...values)`  不接受陣列作為參數：`Math.min(...values)`  的參數必須是數字，而不是陣列。如果想從一個陣列中找出最小值，需要使用展開運算符 (`...`) 來將陣列展開成多個數字
+
+    ```
+	let arr = [4, 9, 1];
+	console.log(Math.min(arr));   // NaN
+	console.log(Math.min(...arr));   // 1
+    ```
+
+### 總結
+
+`Math.min(...values)` 是一個用來找出多個數字中最小值的方法，可以比較任意數量的數字，並返回其中的最小值。常用於數字比較、資料處理等場景。需要注意的是，如果參數中有 NaN，結果會是 NaN，而無參數時則返回 -Infinity。
