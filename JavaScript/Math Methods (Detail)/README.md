@@ -920,3 +920,137 @@ Math.min(value1, value2, ..., valueN);
 ### 總結
 
 `Math.min(...values)` 是一個用來找出多個數字中最小值的方法，可以比較任意數量的數字，並返回其中的最小值。常用於數字比較、資料處理等場景。需要注意的是，如果參數中有 NaN，結果會是 NaN，而無參數時則返回 -Infinity。
+
+<br />
+
+## Math.pow(base, exponent)
+
+`Math.pow(base, exponent)` 是 JavaScript 中用來計算次方的內建方法，其中 base (底數) 和 exponent (指數)，返回底數 base 的 exponent 次方結果。也就是說，`Math.pow(base, exponent)` 會將底數提升到指數的冪次，並返回該數值。
+
+### 基本語法
+
+```
+Math.pow(base, exponent);
+```
+
+- base：要被提升次方的數字 (底數)。
+
+- exponent：提升的次數 (指數)。
+
+### 詳細說明
+
+- 指數運算的基本概念
+
+    `Math.pow(base, exponent)` 是計算 base 提升到 exponent 次方。
+    
+    例如：如果想計算 2 的 3 次方 (2^3)
+
+    ```
+    console.log(Math.pow(2, 3));   // 8
+    ```
+
+- 範例
+
+    - 正數指數
+
+        當底數和指數都是正數的情況。
+
+        ```
+        console.log(Math.pow(3, 2));   // 9
+        console.log(Math.pow(5, 3));   // 125
+        ```
+    - 負數指數
+
+        當指數是負數時，`Math.pow(base, exponent)` 計算的是該底數的倒數。
+
+        ```
+        console.log(Math.pow(2, -3));   // 0.125
+        console.log(Math.pow(10, -2));   // 0.01
+        ```
+
+    - 指數為零
+
+        根據數學規則，任何數字的 0 次方都是 1。
+
+        ```
+        console.log(Math.pow(5, 0));   // 1
+        console.log(Math.pow(100, 0));   // 1
+        ```
+
+    - 負數底數
+
+        如果底數是負數，且指數是正整數，`Math.pow(base, exponent)` 會正常計算。
+
+        ```
+        console.log(Math.pow(-3, 3));   // -27
+        console.log(Math.pow(-2, 4));   // 16
+        ```
+
+		當底數是負數且指數為奇數時，結果是負數（例如：-3^3 = -27）。
+		
+        當底數是負數且指數為偶數時，結果是正數（例如：-2^4 = 16）。
+
+    - 小數指數
+
+        `Math.pow(base, exponent)` 也可以處理小數指數。當指數為小數時，計算的結果是底數的根值。
+
+        ```
+        console.log(Math.pow(9, 0.5));   // 3   (9 的平方根)
+        console.log(Math.pow(27, 1/3));   // 3   (27 的立方根)
+        ```
+
+    - NaN 和 Infinity
+
+        如果傳入的參數中包含無效值 (例如：非數字)，`Math.pow(base, exponent)` 會返回 NaN。根據數學規則，某些情況下結果會是 Infinity 或 -Infinity
+
+        ```
+        console.log(Math.pow(0, -1));   // Infinity   (0 的負次方是無窮大)
+        console.log(Math.pow(Infinity, 2));   // Infinity   (無窮大的平方還是無窮大)
+        ```
+
+- 應用場景
+
+    - 指數運算：`Math.pow(base, exponent)` 可以用來計算科學或金融中的指數運算，例如：利息、增長率等。
+
+    - 平方和立方：可以用來計算平方 `Math.pow(x, 2)` 或立方 `Math.pow(x, 3)`，也可以計算根號 (例如：平方根 `Math.pow(x, 0.5)`)。
+
+### 替代方法
+
+在 ES6 中，除了 `Math.pow(base, exponent)`，也可以使用指數運算符 (**) 來進行相同的運算。
+
+```
+console.log(2 ** 3);   // 8
+console.log(5 ** 2);   // 25
+```
+
+### 範例總結
+
+- 基本次方運算
+
+    ```
+    console.log(Math.pow(4, 3));   // 64
+    ```
+
+- 負數次方
+
+    ```
+    console.log(Math.pow(2, -2));   // 0.25
+    ```
+
+- 平方根計算
+
+    ```
+    console.log(Math.pow(16, 0.5));   // 4
+    ```
+
+- 倒數運算
+
+    ```
+    console.log(Math.pow(10, -1));   // 0.1
+    ```
+
+### 總結
+
+`Math.pow(base, exponent)` 是用來計算次方的方法，允許將一個數字提升到特定的冪次。
+
+`Math.pow(base, exponent)` 支援正數、負數和小數的指數運算，並能處理各種複雜的數學運算場景。無論是計算平方、立方或根值，`Math.pow(base, exponent)` 都是非常好用的方法。
