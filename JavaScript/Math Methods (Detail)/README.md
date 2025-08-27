@@ -1054,3 +1054,85 @@ console.log(5 ** 2);   // 25
 `Math.pow(base, exponent)` 是用來計算次方的方法，允許將一個數字提升到特定的冪次。
 
 `Math.pow(base, exponent)` 支援正數、負數和小數的指數運算，並能處理各種複雜的數學運算場景。無論是計算平方、立方或根值，`Math.pow(base, exponent)` 都是非常好用的方法。
+
+<br />
+
+## Math.sqrt(x)
+
+`Math.sqrt(x)` 是 JavaScript 中用來計算平方根的內建方法。也就是說，當一個數字平方 (乘以自身) 等於 x 時，這個數字就是 x 的平方根。如果 x 是正數，返回其平方根；如果 x 是負數，則會返回 NaN，因為負數在實數範圍內沒有平方根。
+
+### 基本語法
+
+```
+Math.sqrt(x);
+```
+
+- x：想要計算平方根的數字。
+
+### 詳細說明
+
+- 範例
+
+    - 正數的平方根
+
+        `Math.sqrt(x)` 會返回 x 的平方根。
+
+        ```
+        console.log(Math.sqrt(9));   // 3
+        console.log(Math.sqrt(16));   // 4
+        ```
+
+    - 負數的平方根
+
+        如果 x 是負數，`Math.sqrt(x)` 會返回 NaN (Not a Number)，因為在實數範圍內負數沒有平方根。
+
+        ```
+        console.log(Math.sqrt(-1));   // NaN
+        ```
+
+    - 0 的平方根
+
+        如果 x 是 0，則平方根也是 0。
+
+        ```
+        console.log(Math.sqrt(0));   // 0
+        ```
+
+    - 小數的平方根
+
+        `Math.sqrt(x)` 也可以處理小數，並返回該小數的平方根。
+
+        ```
+        console.log(Math.sqrt(0.25));   // 0.5
+        console.log(Math.sqrt(2.25));   // 1.5
+        ```
+
+- 應用場景
+
+    - 數學運算：`Math.sqrt(x)` 常用於數學計算中，例如：幾何問題或物理問題中，需要計算距離或面積時可能會用到平方根。
+
+    - 計算歐幾里得距離：在計算兩點之間的距離時，`Math.sqrt(x)` 可以用來計算平方和的根值。
+
+        ```
+        let x1 = 3, y1 = 4;
+		let x2 = 0, y2 = 0;
+		let distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+		console.log(distance);   // 5
+        ```
+
+### 與 `Math.pow(base, exponent)` 的比較
+
+`Math.sqrt(x)` 等同於 `Math.pow(x, 0.5)`，兩者都可以用來計算平方根
+
+```
+console.log(Math.sqrt(25));   // 5
+console.log(Math.pow(25, 0.5));   // 5
+```
+
+### 常見誤區
+
+- 負數的處理：`Math.sqrt(x)` 無法處理負數的平方根。如果需要處理負數的平方根，就需要進行複數運算，而 JavaScript 的內建 `Math.sqrt(x)` 並不支援複數運算。
+
+### 總結
+
+`Math.sqrt(x)` 是計算數字平方根的方法，常用於數學計算和科學應用中。對於正數會返回其平方根，對於負數則會返回 NaN。
