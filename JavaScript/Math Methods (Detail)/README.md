@@ -1136,3 +1136,86 @@ console.log(Math.pow(25, 0.5));   // 5
 ### 總結
 
 `Math.sqrt(x)` 是計算數字平方根的方法，常用於數學計算和科學應用中。對於正數會返回其平方根，對於負數則會返回 NaN。
+
+<br />
+
+## Math.cbrt(x)
+
+`Math.cbrt(x)` 是 JavaScript 中用來計算立方根的內建方法。也就是說，當一個數字立方等於 x 時，這個數字就是 x 的立方根。與平方根不同，立方根可以接受負數，因為負數也有對應的立方根。
+
+### 基本語法
+
+```
+Math.cbrt(x);
+```
+
+- x：想要計算立方根的數字。
+
+### 詳細說明
+
+- 範例
+
+    - 正數的立方根
+
+        如果 x 是正數，`Math.cbrt(x)` 會返回正的立方根
+
+        ```
+		console.log(Math.cbrt(8));   // 2
+		console.log(Math.cbrt(27));   // 3
+        ```
+
+    - 負數的立方根
+
+        與平方根不同，負數也有立方根。`Math.cbrt(x)` 可以計算負數的立方根。
+
+        ```
+        console.log(Math.cbrt(-8));   // -2
+        console.log(Math.cbrt(-27));   // -3
+        ```
+
+    - 0 的立方根
+
+        如果 x 是 0，則立方根也是 0。
+
+        ```
+        console.log(Math.cbrt(0));   // 0
+        ```
+
+    - 小數的立方根
+
+        `Math.cbrt(x)`  也可以處理小數，並返回該小數的立方根。
+
+        ```
+        console.log(Math.cbrt(0.125));   // 0.5
+        console.log(Math.cbrt(1.331));   // 1.1
+        ```
+
+- 應用場景
+
+    - 數學運算：`Math.cbrt(x)`  常用於數學計算中，例如：計算三維體積或需要求解立方方程式的情況。
+
+    - 幾何應用：計算立方體的邊長，當已知體積時，可以通過立方根來求出邊長。
+
+        ```
+		let volume = 64;
+		let edgeLength = Math.cbrt(volume);
+		console.log(edgeLength);   // 4
+        ```
+
+### 與 Math.pow(base, exponent) 的比較
+
+雖然可以使用 `Math.pow(x, 1/3)` 來計算立方根，但 `Math.cbrt(x)` 是更精確和直接的方法，因為可以避免浮點運算中的誤差，特別是在處理負數時更為精確。
+
+```
+console.log(Math.cbrt(-1.331));   // -1.1
+console.log(Math.pow(-1.331, 1/3));   // NaN
+```
+
+- `Math.cbrt(x)` 方法是專門用來計算數字的立方根，並且可以處理負數。
+
+- `Math.pow(base, exponent)` 使用的是乘方計算式，無法處理帶有分數次方的負數。在數學上，對於負數的分數次方會涉及到複數的計算，因為 JavaScript 的 `Math.pow(base, exponent)` 無法直接處理複數，所以返回 NaN (Not a Number)，表示結果無法計算。
+
+
+### 總結
+
+`Math.cbrt(x)` 是用來計算立方根的方法，無論是正數、負數、小數還是零，都能給出正確的結果。與平方根不同，負數也有立方根，因此 `Math.cbrt(x)` 在處理負數時更好用。
