@@ -86,3 +86,45 @@
     ```
 
     以上範例中，只有當 `count` 的值真的改變時，Angular 才會重新檢查並更新畫面。
+
+
+### `@Directive`
+
+- 用途：宣告一個類別為指令 (Directive)，用於為現有 DOM 元素添加新的行為。與元件不同，指令沒有自己的模板。
+
+- 語法
+
+    ```typescript
+    import { Directive, ElementRef, HostListener } from '@angular/core';
+
+	@Directive({
+	  selector: '[appHighlight]'   // 屬性選擇器，用 [] 包起來
+	})
+	export class HighlightDirective {
+      constructor(private el: ElementRef) {}
+
+	  @HostListener('mouseenter') onMouseEnter() {
+	    this.highlight('yellow');
+	  }
+
+	  @HostListener('mouseleave') onMouseLeave() {
+	    this.highlight(null);
+	  }
+
+	  private highlight(color: string | null) {
+	    this.el.nativeElement.style.backgroundColor = color;
+	  }
+    }
+    ```
+
+- 說明
+
+    - 常見的應用範圍
+
+        - 改變元素的樣式。
+
+        - 監聽宿主元素事件。
+
+        - 控制 DOM 結構 (新增/移除節點)。
+
+    - 可以視為「沒有模板的元件」。
