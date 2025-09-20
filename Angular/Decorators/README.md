@@ -136,3 +136,49 @@
     - Attribute Directive (屬性型指令)：改變元素外觀或行為，不改變 DOM 結構，例如：`ngClass`、`ngStyle`、自訂 `appHighlight`。
 
     - Structural Directive (結構型指令)：改變 DOM 結構，語法通常加上 `*`，例如：`*ngIf`、`*ngFor`、`*ngSwitchCase`。
+
+### `@NgModule`
+
+- 用途：將相關的元件 (Component)、指令 (Directive)、管道 (Pipe) 和服務 (Service) 組織成模組 (Module)，讓應用程式更有結構性、可維護性。
+
+    - 根模組 (Root Module)：每個 Angular 應用程式至少有一個，用於啟動整個應用。
+
+    - 功能模組 (Feature Module)：封裝特定功能的元件或服務，可在 `AppModule` 或其他模組中引用。
+
+- 語法
+
+    ```typescript
+	import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+	import { CommonModule } from '@angular/common';
+	import { FormsModule } from '@angular/forms';
+
+	@NgModule({
+	  declarations: [MyComponent, HighlightDirective, CapitalizePipe],   // 模組內的元件、指令、管道
+	  imports: [CommonModule, FormsModule],                              // 引入其他模組
+	  providers: [MyService],                                            // 提供服務 (非必要，推薦用 providedIn)
+	  exports: [MyComponent, CapitalizePipe],                            // 對外導出
+	  bootstrap: [AppComponent],                                         // 根模組才需要
+	  schemas: [CUSTOM_ELEMENTS_SCHEMA]                                  // 可選，允許自定義元素
+	})
+	export class AppModule {}
+    ```
+
+- 說明
+
+    - `declarations`：模組內的元件、指令和管道，必須宣告才能在模板中使用。
+
+    - `imports`：引入其他模組，使用導出的元件、指令或服務。
+
+    - `providers`：在模組範圍提供服務，Angular 透過依賴注入管理生命週期。
+
+    - `exports`：導出模組內的元件、指令或管道，供其他模組引用。
+
+    - `bootstrap`：僅在根模組使用，指定啟動元件。
+
+    - `schemas`：允許使用非 Angular 元件或自定義元素
+
+        - `CUSTOM_ELEMENTS_SCHEMA`：允許自定義 Web Components。
+
+        - `NO_ERRORS_SCHEMA`：忽略 Angular 不認識的屬性與元素 (用得少，避免濫用)。
+
+    - `AppModule`：每個 Angular 用程式至少有一個 `AppModule` (根模組)，定義應用程式範圍，告訴 Angular 如何組裝應用程式。
