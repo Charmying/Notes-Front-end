@@ -128,3 +128,11 @@
         - 控制 DOM 結構 (新增/移除節點)。
 
     - 可以視為「沒有模板的元件」。
+
+- 指令的三種類型
+
+    - Component (元件型指令)：特殊的指令，帶有模板與樣式，例如：`@Component`。
+
+    - Attribute Directive (屬性型指令)：改變元素外觀或行為，不改變 DOM 結構，例如：`ngClass`、`ngStyle`、自訂 `appHighlight`。
+
+    - Structural Directive (結構型指令)：改變 DOM 結構，語法通常加上 `*`，例如：`*ngIf`、`*ngFor`、`*ngSwitchCase`。
