@@ -182,3 +182,21 @@
         - `NO_ERRORS_SCHEMA`：忽略 Angular 不認識的屬性與元素 (用得少，避免濫用)。
 
     - `AppModule`：每個 Angular 用程式至少有一個 `AppModule` (根模組)，定義應用程式範圍，告訴 Angular 如何組裝應用程式。
+
+- 補充
+
+    - 懶加載 (Lazy Loading)：功能模組可透過 Angular Router 延遲載入，提升效能。
+
+    - `providers` vs `providedIn`
+
+        - `providers: [Service]`：服務實例只存在於該模組。
+
+        - `@Injectable({ providedIn: 'root' })`：全應用單例，支援 Tree-Shaking。
+
+    - 模組化優勢
+
+        - 隔離功能 (例如：`UserModule`、`AdminModule`)。
+
+        - 減少耦合，提高可維護性。
+
+        - 提供可重複使用的模組 (例如：`SharedModule`)。
