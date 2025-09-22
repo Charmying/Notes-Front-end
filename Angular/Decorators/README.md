@@ -200,3 +200,53 @@
         - 減少耦合，提高可維護性。
 
         - 提供可重複使用的模組 (例如：`SharedModule`)。
+
+### `@Pipe`
+
+- 用途：宣告一個類別為管道 (Pipe)，用於在模板中轉換資料，例如：i18n 翻譯、日期格式化、文字格式化等。
+
+- 語法
+
+    ```typescript
+	@Pipe({
+	  name: 'capitalize',
+	  pure: true   // 預設為純管道
+	})
+	export class CapitalizePipe implements PipeTransform {
+	  transform(value: string, ...args: any[]): string {
+	    if (!value) return '';
+	    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+	  }
+	}
+    ```
+
+- 使用方式
+
+    ```html
+	<!-- 基本使用 -->
+	{{ message | capitalize }}
+
+	<!-- 帶參數的管道 -->
+	{{ date | date:'yyyy-MM-dd' }}
+
+	<!-- 鏈式管道 (可串接多個管道) -->
+	{{ price | currency:'USD' | lowercase }}
+    ```
+
+- 說明
+
+    - `@Pipe` 必須實作 `PipeTransform` 介面，並提供 `transform` 方法處理資料。
+
+    - `name`：管道在模板中的名稱。
+
+    - `pure`：管道是否為純管道
+
+        - `true` (預設)：僅在輸入值改變時執行。
+
+        - `false`：每次變更檢測都會執行，適合處理非純函數或外部狀態，但可能影響效能。
+
+    - `transform`
+
+        - 第一個參數是輸入值。
+
+        - 之後的參數對應模板中的管道參數。
