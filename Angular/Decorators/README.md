@@ -250,3 +250,15 @@
         - 第一個參數是輸入值。
 
         - 之後的參數對應模板中的管道參數。
+
+- 內建常用管道
+
+    - 文字處理：`uppercase`、`lowercase`、`titlecase`。
+
+    - 數字/貨幣：`number`、`percent`、`currency`。
+
+    - 日期：`date` (支援格式化字串，例如：yyyy-MM-dd)。
+
+    - JSON & Slice：`json`、`slice`。
+
+    - 非同步：`async` (自動訂閱 `Observable`/`Promise`)。
