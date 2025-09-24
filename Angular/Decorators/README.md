@@ -262,3 +262,38 @@
     - JSON & Slice：`json`、`slice`。
 
     - 非同步：`async` (自動訂閱 `Observable`/`Promise`)。
+
+### `@Injectable`
+
+- 用途：將類別標記為可被 Angular 依賴注入 (Dependency Injection，簡稱：DI) 系統管理的服務。當類別需要注入其他服務，或需要指定提供範圍時，必須加上 `@Injectable`。
+
+- 語法
+
+    ```typescript
+	@Injectable({
+	  providedIn: 'root'   // 在根注入器提供，整個應用程式共享
+	})
+	export class DataService {
+	  private apiUrl = 'https://api.example.com';
+
+	  constructor(private http: HttpClient) {}
+
+	  getData(): Observable<any[]> {
+	    return this.http.get<any[]>(`${this.apiUrl}/data`);
+	  }
+	}
+    ```
+
+- 說明
+
+    - `@Injectable` 標記的類別由 Angular DI 容器管理生命週期，一般不直接用 `new` 建立。
+
+    - `providedIn` 屬性：定義服務的可用範圍
+
+        - `'root'`：在 根注入器 提供，整個應用程式共用單一實例 (最常用，支援 Tree-shaking)。
+
+        - `'platform'`：在平台注入器提供，跨多個 Angular 應用程式共用。
+
+        - `'any'`：每個 延遲載入模組 或 注入器 會建立自己的實例。
+
+        - 特定模組：`providedIn: SomeModule`，僅在該模組範圍內可用。
