@@ -303,3 +303,9 @@
     - 如果服務不需要注入其他依賴，可以省略 `@Injectable`，但若要使用 `providedIn`，則必須加上。
 
     - 建議使用 `providedIn: 'root'`，可減少 `providers` 的設定並提升效能。
+
+<br />
+
+## 屬性裝飾器 (Property Decorators)
+
+屬性裝飾器用於裝飾類別中的屬性，定義其在模板中與 DOM 互動的方式。
