@@ -309,3 +309,57 @@
 ## 屬性裝飾器 (Property Decorators)
 
 屬性裝飾器用於裝飾類別中的屬性，定義其在模板中與 DOM 互動的方式。
+
+### `@Input`
+
+- 用途：將屬性標記為輸入屬性 (Input Property)，允許父元件將資料傳遞給子元件。
+
+- 語法
+
+    ```typescript
+	export class ChildComponent {
+	  /** 基本用法 */
+	  @Input() title: string = '';
+
+	  /** 使用別名 */
+	  @Input('user-data') userData: User | null = null;
+
+	  /** 使用 setter 處理資料 */
+	  private _count = 0;
+	  @Input()
+	  set count(value: number) {
+	    this._count = value < 0 ? 0 : value;
+	  }
+	  get count(): number {
+	    return this._count;
+	  }
+
+	  /** 具備預設值的輸入屬性 */
+	  @Input() theme: 'light' | 'dark' = 'light';
+	}
+    ```
+
+- 父元件使用方式
+
+    ```html
+	<app-child 
+	  [title]="parentTitle"
+	  [user-data]="currentUser"
+	  [count]="itemCount"
+	  theme="dark">
+	</app-child>
+    ```
+
+- 說明
+
+    - 在父元件模板中使用子元件選擇器時，可透過 屬性綁定 (`[property]="value"`) 傳遞資料，子元件透過 `@Input` 接收。
+
+    - 支援任何 TypeScript 型別：基本型別、物件、陣列、自訂型別等。
+
+    - 可搭配 setter，在資料更新時執行程式 (例如：驗證、轉換)。
+
+    - 別名可讓模板屬性名稱與類別屬性名稱不同 (`@Input('alias')`)。
+
+    - Angular 變更檢測 (Change Detection) 會自動追蹤 `@Input` 的更新，並在子元件中觸發 `ngOnChanges()` 生命週期鉤子。
+
+    - `@Input` 屬性應為公開 (Public)，否則 Angular 無法存取。
