@@ -363,3 +363,54 @@
     - Angular 變更檢測 (Change Detection) 會自動追蹤 `@Input` 的更新，並在子元件中觸發 `ngOnChanges()` 生命週期鉤子。
 
     - `@Input` 屬性應為公開 (Public)，否則 Angular 無法存取。
+
+### `@Output`
+
+- 用途：將屬性標記為輸出屬性 (Output Property)，讓子元件發出事件通知父元件。
+
+- 語法
+
+    ```typescript
+	export class ChildComponent {
+	  /** 基本事件發射器 */
+	  @Output() clicked = new EventEmitter<void>();
+
+	  /** 帶資料事件 */
+	  @Output() dataChanged = new EventEmitter<string>();
+
+	  /** 使用別名 */
+	  @Output('item-selected') itemSelected = new EventEmitter<number>();
+
+	  onButtonClick() {
+	    this.clicked.emit();
+	  }
+
+	  onInputChange(value: string) {
+	    this.dataChanged.emit(value);
+	  }
+
+	  selectItem(id: number) {
+	    this.itemSelected.emit(id);
+	  }
+	}
+    ```
+
+- 父元件監聽方式
+
+    ```html
+	<app-child 
+	  (clicked)="onChildClicked()"
+	  (dataChanged)="onDataChanged($event)"
+	  (item-selected)="onItemSelected($event)">
+	</app-child>
+    ```
+
+- 說明
+
+    - `@Output` 屬性必須是 `EventEmitter<T>` 的實例。
+
+    - 在父元件模板中使用事件綁定 (`(event)="handler($event)"`) 來接收事件。
+
+    - 搭配型別化 `EventEmitter<T>` 可增加型別安全。
+
+    - 使用 `emit()` 方法觸發事件並傳遞資料給父元件。
