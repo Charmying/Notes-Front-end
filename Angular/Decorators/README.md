@@ -414,3 +414,65 @@
     - 搭配型別化 `EventEmitter<T>` 可增加型別安全。
 
     - 使用 `emit()` 方法觸發事件並傳遞資料給父元件。
+
+### `@ViewChild` 和 `@ViewChildren`
+
+- 用途：查詢元件模板中自己的視圖 (View) 元素或子元件。
+
+    - `@ViewChild`：取得第一個符合條件的實例。
+
+    - `@ViewChildren`：取得所有符合條件的實例 (回傳 `QueryList<T>`)。
+
+- 語法
+
+    ```typescript
+	export class ParentComponent implements AfterViewInit {
+	  /** 查詢單一元件 */
+	  @ViewChild(ChildComponent) childComponent!: ChildComponent;
+
+	  /** 查詢單一 DOM 元素 (模板引用變數) */
+	  @ViewChild('myInput') inputElement!: ElementRef<HTMLInputElement>;
+
+	  /** 查詢單一元素並指定回傳類型 */
+	  @ViewChild('myTemplate', { read: TemplateRef }) 
+	  template!: TemplateRef<any>;
+
+	  /** 查詢多個元件 */
+	  @ViewChildren(ChildComponent) 
+	  childComponents!: QueryList<ChildComponent>;
+
+	  /** 查詢多個元素 */
+	  @ViewChildren('item', { read: ElementRef }) 
+	  items!: QueryList<ElementRef>;
+
+	  /** 靜態查詢 (在 ngOnInit 前即可取得) */
+	  @ViewChild('staticElement', { static: true }) 
+	  staticElement!: ElementRef;
+
+      /** ViewChild 和 ViewChildren 在這裡才會初始化 */
+	  ngAfterViewInit() {
+	    console.log(this.childComponent);
+	    console.log(this.inputElement.nativeElement.value);
+
+	    this.childComponents.forEach(child => {
+	      console.log(child);
+	    });
+	  }
+	}
+    ```
+
+- 說明
+
+    - 這兩個裝飾器預設在 `ngAfterViewInit` 生命週期中初始化，用於存取模板中的 DOM 元素或元件實例。
+
+    - `static` 選項
+
+        - `static: true`：在 ngOnInit 前就可取得 (適合靜態元素)。
+
+        - `static: false` (預設)：需等到 ngAfterViewInit 才能取得 (適合動態元素)。
+
+    - 可搭配 `read` 選項指定取回型別，例如：`ElementRef`、`TemplateRef`、元件或指令。
+
+    - `@ViewChild` 回傳第一個符合條件的實例。
+
+    - `@ViewChildren` 回傳 `QueryList<T>`，支援集合操作，例如：`forEach`、`map`。
