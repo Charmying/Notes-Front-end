@@ -476,3 +476,58 @@
     - `@ViewChild` 回傳第一個符合條件的實例。
 
     - `@ViewChildren` 回傳 `QueryList<T>`，支援集合操作，例如：`forEach`、`map`。
+
+### `@ContentChild` 和 `@ContentChildren`
+
+- 用途：查詢投影到元件 `<ng-content>` 區域中的元素或子元件。
+
+    - `@ContentChild`：取得第一個符合條件的實例。
+
+    - `@ContentChildren`：取得所有符合條件的實例 (回傳 `QueryList<T>`)。
+
+- 語法
+
+    ```typescript
+	export class WrapperComponent implements AfterContentInit {
+	  /** 查詢投影的單一元件 */
+	  @ContentChild(ProjectedComponent) 
+	  projectedComponent!: ProjectedComponent;
+
+	  /** 查詢投影的單一元素 */
+	  @ContentChild('projectedElement') 
+	  element!: ElementRef;
+
+	  /** 查詢投影的多個元件 */
+	  @ContentChildren(ProjectedComponent) 
+	  projectedComponents!: QueryList<ProjectedComponent>;
+
+	  /** 查詢特定指令 */
+	  @ContentChild(MyDirective) 
+	  directive!: MyDirective;
+
+	  /** ContentChild 和 ContentChildren 在這裡才會初始化 */
+	  ngAfterContentInit() {
+	    console.log(this.projectedComponent);
+	    
+	    this.projectedComponents.forEach(component => {
+	      console.log(component);
+	    });
+	  }
+	}
+    ```
+
+- 說明
+
+    - 這兩個裝飾器會在內容投影完成後才有值，初始化於 `ngAfterContentInit`。
+
+    - `@ContentChildren` 的 `QueryList` 若內容變動會自動更新，支援集合操作，例如：`forEach`、`map`。
+
+    - 與 `@ViewChild`/`@ViewChildren` 的差異
+
+        - `ViewChild`/`ViewChildren` 查詢元件自己的模板。
+
+        - `ContentChild`/`ContentChildren` 查詢父元件投影進來的內容。
+
+    - 可搭配 `{ static, read }` 選項控制查詢時機與回傳型別。
+
+    - 適用於實現可重複使用的容器元件。
