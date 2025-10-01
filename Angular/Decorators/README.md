@@ -531,3 +531,69 @@
     - 可搭配 `{ static, read }` 選項控制查詢時機與回傳型別。
 
     - 適用於實現可重複使用的容器元件。
+
+### `@HostBinding`
+
+- 用途：將元件或指令的屬性綁定到宿主元素 (Host Element) 的屬性、樣式或類別。
+
+- 語法
+
+    ```typescript
+	@Directive({
+	  selector: '[appHighlight]'
+	})
+	export class HighlightDirective {
+	  /** 綁定單一 CSS 類別 */
+	  @HostBinding('class.highlighted') isHighlighted = false;
+
+	  /** 綁定多個 CSS 類別 */
+	  @HostBinding('class.active') isActive = true;
+	  @HostBinding('class.disabled') isDisabled = false;
+
+	  /** 綁定樣式屬性 */
+	  @HostBinding('style.backgroundColor') backgroundColor = 'yellow';
+	  @HostBinding('style.color') textColor = 'black';
+
+	  /** 綁定 HTML 屬性 */
+	  @HostBinding('attr.aria-label') ariaLabel = 'Highlighted element';
+	  @HostBinding('attr.tabindex') tabIndex = 0;
+
+	  /** 綁定到計算屬性 (getter) */
+	  @HostBinding('class.large') 
+	  get isLarge(): boolean {
+	    return this.size === 'large';
+	  }
+	  private size = 'medium';
+
+	  /** 動態改變綁定值 */
+	  @HostListener('mouseenter')
+	  onMouseEnter() {
+	    this.isHighlighted = true;
+	    this.backgroundColor = 'lightblue';
+	  }
+
+	  @HostListener('mouseleave')
+	  onMouseLeave() {
+	    this.isHighlighted = false;
+	    this.backgroundColor = 'yellow';
+	  }
+	}
+    ```
+
+- 說明
+
+    - 可綁定的類型
+
+        - `class.className`：切換 CSS 類別。
+
+        - `style.styleName`：綁定內聯樣式。
+
+        - `attr.attributeName`：綁定 HTML 屬性。
+
+        - 直接屬性名稱：綁定 DOM 屬性。
+
+    - 支援綁定 getter 以動態計算值。
+
+    - 常與 `@HostListener` 搭配，用於建立互動式指令。
+
+    - 例如：`isActive = true` 時，宿主元素加上 `active` CSS 類別；`isActive = false` 時則移除。
