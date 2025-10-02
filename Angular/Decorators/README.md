@@ -597,3 +597,9 @@
     - 常與 `@HostListener` 搭配，用於建立互動式指令。
 
     - 例如：`isActive = true` 時，宿主元素加上 `active` CSS 類別；`isActive = false` 時則移除。
+
+<br />
+
+## 方法裝飾器 (Method Decorators)
+
+方法裝飾器用於裝飾類別中的方法，定義其對宿主元素的事件響應方式。
