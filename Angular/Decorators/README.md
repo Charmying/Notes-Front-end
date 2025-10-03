@@ -603,3 +603,85 @@
 ## 方法裝飾器 (Method Decorators)
 
 方法裝飾器用於裝飾類別中的方法，定義其對宿主元素的事件響應方式。
+
+### `@HostListener`
+
+- 用途：監聽宿主元素或全域物件事件，並在事件觸發時執行方法。
+
+- 語法
+
+    ```typescript
+	@Directive({
+	  selector: '[appClickTracker]'
+	})
+	export class ClickTrackerDirective {
+	  private clickCount = 0;
+
+	  /** 監聽宿主元素點擊 */
+	  @HostListener('click', ['$event'])
+	  onClick(event: MouseEvent) {
+	    this.clickCount++;
+	    console.log(`Clicked ${this.clickCount} times`, event);
+	    event.preventDefault();
+	    event.stopPropagation();
+	  }
+
+	  /** 監聽鍵盤事件，取得按鍵資訊 */
+	  @HostListener('keydown', ['$event.key', '$event.ctrlKey'])
+	  onKeyDown(key: string, ctrlPressed: boolean) {
+	    if (ctrlPressed && key === 's') {
+	      console.log('Ctrl+S pressed - Save shortcut!');
+	    }
+	  }
+
+	  /** 監聽滑鼠進入與離開 */
+	  @HostListener('mouseenter') onMouseEnter() {
+	    console.log('Mouse entered element');
+	  }
+
+	  @HostListener('mouseleave') onMouseLeave() {
+	    console.log('Mouse left element');
+	  }
+
+	  /** 監聽全域 window 事件 */
+	  @HostListener('window:resize', ['$event'])
+	  onWindowResize(event: UIEvent) {
+	    const target = event.target as Window;
+	    console.log(`Window resized: ${target.innerWidth}x${target.innerHeight}`);
+	  }
+
+	  /** 監聽 document click 事件 */
+	  @HostListener('document:click', ['$event.target'])
+	  onDocumentClick(targetElement: HTMLElement) {
+	    if (!this.elementRef.nativeElement.contains(targetElement)) {
+	      console.log('Clicked outside component');
+	    }
+	  }
+
+	  constructor(private elementRef: ElementRef) {}
+	}
+    ```
+
+- 說明
+
+    - 支援監聽宿主元素或全域物件 (`window`、`document`、`body`) 的事件。
+
+    - 參數傳遞
+
+        - `['$event']`：整個事件物件。
+
+        - `['$event.key']`：事件屬性。
+
+        - 可同時傳多個值，例如：`['$event.clientX', '$event.clientY']`。
+
+    - 支援事件修飾符，例如：`keydown.enter`、`keydown.escape`。
+
+    - 典型應用場景
+
+        - 指令監聽滑鼠 hover 改變樣式。
+
+        - 元件監聽視窗 resize 調整版面。
+
+        - 指令監聽鍵盤快捷鍵。
+
+        - 監聽文件 click，用於下拉選單點擊外部區域關閉。
