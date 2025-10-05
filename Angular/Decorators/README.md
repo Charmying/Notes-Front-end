@@ -691,3 +691,61 @@
 ## 參數裝飾器 (Parameter Decorators)
 
 參數裝飾器用於裝飾建構子中的參數，主要用於微調 Angular 的依賴注入行為。
+
+### `@Inject`
+
+- 用途：手動指定要注入的依賴項，通常用於 非類別型別 (例如：字串、數字、物件設定值)，或需要透過 `InjectionToken` 提供的情境。
+
+- 語法
+
+    ```typescript
+    export const API_URL = new InjectionToken<string>('api.url');
+    export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+
+    // 定義注入令牌
+    @Injectable()
+    export class ApiService {
+      constructor(
+        @Inject(API_URL) private apiUrl: string,
+        @Inject(APP_CONFIG) private config: AppConfig,
+        private http: HttpClient
+      ) {}
+
+      getData() {
+        return this.http.get(`${this.apiUrl}/data`);
+      }
+    }
+
+    /** 在模組中提供值 */
+    @NgModule({
+      providers: [
+        { provide: API_URL, useValue: 'https://api.example.com' },
+        { provide: APP_CONFIG, useValue: { theme: 'dark', version: '1.0.0' } }
+      ]
+    })
+    export class AppModule {}
+    ```
+
+- 說明
+
+    - @Inject 通常在建構子參數前使用，用來告訴 Angular 要注入哪個 Token。
+
+    - 必要情境
+
+        - 依賴項不是一個可用於 DI 的類別 (例如：string、number、自訂的設定物件)。
+
+        - 使用 `InjectionToken` 來提供型別安全的依賴。
+
+    - InjectionToken 的好處
+
+        - 型別安全 (比使用字串常數更安全)。
+
+        - 避免名稱衝突 (字串 Token 容易出現同名問題)。
+
+    - 常見用途
+
+        - 注入 API 端點。
+
+        - 注入環境變數或應用程式設定。
+
+        - 注入第三方函式庫或非 Angular 物件。
