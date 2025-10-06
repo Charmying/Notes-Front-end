@@ -749,3 +749,56 @@
         - 注入環境變數或應用程式設定。
 
         - 注入第三方函式庫或非 Angular 物件。
+
+### `@Attribute`
+
+- 用途
+
+    - 從宿主元素的 靜態 HTML 屬性 (Attribute，而不是 Property) 中取得字串值。
+
+    - 與 `@Input` 不同，不參與資料綁定，只在元件建構子初始化時讀取一次
+
+- 語法
+
+    ```typescript
+    @Component({
+      selector: 'app-button[type]',
+      template: `
+        <button [type]="buttonType" [disabled]="disabled">
+          <ng-content></ng-content>
+        </button>
+      `
+    })
+    export class ButtonComponent {
+      disabled = false;
+
+      constructor(
+        @Attribute('type') public buttonType: string,
+        @Attribute('size') private size: string,
+        @Attribute('variant') private variant: string | null
+      ) {
+        console.log('Button type:', buttonType);             // 'submit', 'button', etc.
+        console.log('Button size:', size);                   // 'large', 'small', etc.
+        console.log('Button variant:', variant);             // 可能為 null
+
+        /** 根據屬性設定樣式或行為 */
+        if (size === 'large') {
+          // 設定大型按鈕樣式
+        }
+      }
+    }
+    ```
+
+- 說明
+
+    - `@Attribute` 傳入的值 不會隨父元件變更而更新，與 `@Input` 完全不同。
+
+    - 在建構子呼叫時就被注入，之後就固定。
+
+    - 傳回值永遠是字串或 `null` (即使數字 `123`，結果仍是 `"123"`)。
+
+    - 適合用於
+
+        - 不會改變的靜態屬性 (例如：`type`、`role`、`aria-label`)。
+
+        - 元件配置選項 (例如：`size="large"`、`variant="outlined"`)。
