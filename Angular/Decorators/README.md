@@ -815,3 +815,77 @@
     - 如果需要父元件傳遞資料，且值可能會改變 → 用 `@Input`。
 
     - 如果只需要一開始的靜態配置 → 用 `@Attribute`。
+
+- 用途：限制依賴注入器的搜尋範圍。
+
+    透過這些裝飾器，可以控制服務是從哪一層注入器取得的。
+
+- `@Self`
+
+    - 行為：只在當前自己的注入器內尋找依賴。
+
+    - 沒有找到會報錯，除非搭配 `@Optional`。
+
+    - 語法
+
+		```typescript
+		@Component({
+		  selector: 'app-child',
+		  providers: [LocalService]                      // 只在這個元件層級提供
+		})
+		export class ChildComponent {
+		  constructor(
+		    @Self() private localService: LocalService   // 只能用到本層的 LocalService
+		  ) {}
+		}
+		```
+
+- `@SkipSelf`
+
+    - 行為：跳過自己的注入器，從父注入器開始找。
+
+    - 適合避免注入到覆蓋 (Override) 過的服務。
+
+    - 語法
+
+		```typescript
+		@Component({
+		  selector: 'app-parent',
+		  template: '<app-child></app-child>',
+		  providers: [ParentService]
+		})
+		export class ParentComponent {}
+
+		@Component({
+		  selector: 'app-child',
+		  providers: [{ provide: ParentService, useValue: { name: 'Child Service' } }]
+		})
+		export class ChildComponent {
+		  constructor(
+		    @SkipSelf() private parentService: ParentService
+		  ) {
+		    console.log(parentService.name);   // "Parent Service"
+		  }
+		}
+		```
+
+- `@Host`
+
+    - 行為：只在宿主元件 (Host Component) 的注入器內搜尋。
+
+    - 宿主指的是承載該指令或子元件的元素。
+
+    - 與 `@Self` 不同，`@Host` 不包含自己提供的服務，也不會往上走到 Application Injector。
+
+    - 語法
+
+		```typescript
+		@Directive({
+		  selector: '[appValidator]'
+		})
+		export class ValidatorDirective {
+		  constructor(
+		    @Host() private formControl: NgControl   // 只能在宿主元素上找到
+		  ) {}
+		}
+		```
