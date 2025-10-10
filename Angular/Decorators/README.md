@@ -921,3 +921,54 @@
     - `@SkipSelf`：想用父層版本、避免被覆蓋。
 
     - `@Host`：指令需要宿主元件的依賴注入支援，例如：表單控制。
+
+### `@Optional`
+
+- 用途：允許依賴注入找不到依賴時不拋錯，而是設為 `null`。
+
+- 語法
+
+    ```typescript
+    @Injectable()
+    export class FlexibleService {
+      constructor(
+        private requiredService: RequiredService,                                // 必須存在，否則拋出錯誤
+        @Optional() private optionalService: OptionalService | null,             // 可選服務
+        @Optional() @Inject(FEATURE_FLAG) private featureEnabled: boolean | null
+      ) {
+        if (this.optionalService) {
+          console.log('Optional service is available');
+          this.optionalService.doSomething();
+        } else {
+          console.log('Optional service not provided, using fallback');
+        }
+
+        /** 根據功能旗標決定行為 */
+        if (this.featureEnabled) {
+          this.enableAdvancedFeatures();
+        }
+      }
+
+      private enableAdvancedFeatures() {
+        // 進階功能
+      }
+    }
+    ```
+
+- 說明：
+
+    - 適合非必要服務的注入。
+
+    - 可與其他裝飾器搭配
+
+        ```typescript
+        constructor(@Optional() @SkipSelf() parentService: MyService) {}
+        ```
+
+    - 如果服務不存在，參數會是 `null`，程式碼可依情況處理。
+
+    - 適合建立可選功能和 plugin 系統。
+
+    - 提高程式碼的靈活性和可測試性。
+
+    - 在單元測試中特別有用，可以輕鬆模擬缺少的依賴項。
