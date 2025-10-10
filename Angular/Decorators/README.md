@@ -889,3 +889,35 @@
 		  ) {}
 		}
 		```
+
+- 搭配 `@Optional`
+
+    避免因找不到服務而報錯
+
+	```typescript
+	constructor(
+	  @Optional() @SkipSelf() private parentService: ParentService | null
+	) {
+	  if (parentService) {
+	    console.log('找到父層服務');
+	  } else {
+	    console.log('沒有父層服務');
+	  }
+	}
+	```
+
+- 差異比較表
+
+| 裝飾器 | 搜尋範圍 | 沒找到會怎樣 |
+| - | - | - |
+| `@Self` | 只在自己的注入器搜尋 | 拋錯 (可加 `@Optional`) |
+| `@SkipSelf` | 跳過自己，從父注入器開始往上搜尋 | 拋錯 (可加 `@Optional`) |
+| `@Host` | 只在宿主元件的注入器搜尋，不會繼續往更上層 Application Injector | 拋錯 (可加 `@Optional`) |
+
+- 實務建議
+
+    - `@Self`：確保一定是使用自己這層提供的服務。
+
+    - `@SkipSelf`：想用父層版本、避免被覆蓋。
+
+    - `@Host`：指令需要宿主元件的依賴注入支援，例如：表單控制。
