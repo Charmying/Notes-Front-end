@@ -972,3 +972,52 @@
     - 提高程式碼的靈活性和可測試性。
 
     - 在單元測試中特別有用，可以輕鬆模擬缺少的依賴項。
+
+<br />
+
+## 裝飾器組合使用範例
+
+### 完整元件範例
+
+```typescript
+@Component({
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html',
+  styleUrls: ['./user-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class UserCardComponent implements OnInit, AfterViewInit {
+  @Input() user!: User;
+  @Input() theme: 'light' | 'dark' = 'light';
+  @Output() userSelected = new EventEmitter<User>();
+
+  @ViewChild('avatar', { static: true }) avatarElement!: ElementRef;
+  @HostBinding('class.card') cardClass = true;
+  @HostBinding('class.dark-theme') 
+  get isDarkTheme(): boolean {
+    return this.theme === 'dark';
+  }
+
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    @Optional() private analytics: AnalyticsService | null
+  ) {}
+
+  @HostListener('click')
+  onCardClick() {
+    this.userSelected.emit(this.user);
+    this.analytics?.track('user-card-clicked', { userId: this.user.id });
+  }
+
+  ngOnInit() {
+    console.log('User card initialized for:', this.user.name);
+  }
+
+  ngAfterViewInit() {
+    /** 設定頭像元素 */
+    if (this.avatarElement) {
+      this.avatarElement.nativeElement.alt = `${this.user.name}'s avatar`;
+    }
+  }
+}
+```
