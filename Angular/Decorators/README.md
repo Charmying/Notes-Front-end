@@ -1021,3 +1021,64 @@ export class UserCardComponent implements OnInit, AfterViewInit {
   }
 }
 ```
+
+### 複雜指令範例
+
+```typescript
+@Directive({
+  selector: '[appDragDrop]'
+})
+export class DragDropDirective {
+  @Input() dragData: any;
+  @Output() dropped = new EventEmitter<DragDropEvent>();
+
+  @HostBinding('draggable') draggable = true;
+  @HostBinding('class.dragging') isDragging = false;
+  @HostBinding('class.drag-over') isDragOver = false;
+
+  constructor(
+    private elementRef: ElementRef,
+    @Optional() private dropZone: DropZoneService | null
+  ) {}
+
+  @HostListener('dragstart', ['$event'])
+  onDragStart(event: DragEvent) {
+    this.isDragging = true;
+    if (event.dataTransfer) {
+      event.dataTransfer.setData('text/json', JSON.stringify(this.dragData));
+      event.dataTransfer.effectAllowed = 'move';
+    }
+  }
+
+  @HostListener('dragend')
+  onDragEnd() {
+    this.isDragging = false;
+  }
+
+  @HostListener('dragover', ['$event'])
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = true;
+  }
+
+  @HostListener('dragleave')
+  onDragLeave() {
+    this.isDragOver = false;
+  }
+
+  @HostListener('drop', ['$event'])
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
+
+    if (event.dataTransfer) {
+      const data = JSON.parse(event.dataTransfer.getData('text/json'));
+      this.dropped.emit({
+        dragData: data,
+        dropTarget: this.elementRef.nativeElement,
+        event
+      });
+    }
+  }
+}
+```
