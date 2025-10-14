@@ -1,6 +1,52 @@
-# Angular Decorators
+# Angular Decorators (裝飾器)
 
 以下是 Angular 的 Decorators (裝飾器) 整理。
+
+- [類別裝飾器 (Class Decorators)](#類別裝飾器-class-decorators)
+
+	- [@Component](#component)
+
+	- [@Directive](#directive)
+
+	- [@NgModule](#ngmodule)
+
+	- [@Pipe](#pipe)
+
+	- [@Injectable](#injectable)
+
+- [屬性裝飾器 (Property Decorators)](#屬性裝飾器-property-decorators)
+
+	- [@Input](#input)
+
+	- [@Output](#output)
+
+	- [@ViewChild 和 @ViewChildren](#viewchild-and-viewchildren)
+
+	- [@ContentChild 和 @ContentChildren](#contentchild-and-contentchildren)
+
+	- [@HostBinding](#hostbinding)
+
+- [方法裝飾器 (Method Decorators)](#方法裝飾器-method-decorators)
+
+    - [@HostListener](#hostlistener)
+
+- [參數裝飾器 (Parameter Decorators)](#參數裝飾器-parameter-decorators)
+
+	- [@Inject](#inject)
+
+	- [@Attribute](#attribute)
+
+	- [@Self/@SkipSelf/@Host](#self-skipsel-host)
+
+	- [@Optional](#optional)
+
+- [裝飾器組合使用範例](#裝飾器組合使用範例)
+
+	- [完整元件範例](#完整元件範例)
+
+	- [複雜指令範例](#複雜指令範例)
+
+- [最佳實踐](#最佳實踐)
 
 <br />
 
@@ -185,7 +231,7 @@
 
 - 補充
 
-    - 懶加載 (Lazy Loading)：功能模組可透過 Angular Router 延遲載入，提升效能。
+    - Lazy Loading：功能模組可透過 Angular Router 延遲載入，提升效能。
 
     - `providers` vs `providedIn`
 
@@ -300,7 +346,7 @@
 
 - 補充
 
-    - 如果服務不需要注入其他依賴，可以省略 `@Injectable`，但若要使用 `providedIn`，則必須加上。
+    - 若服務不需要注入其他依賴，可以省略 `@Injectable`，但若要使用 `providedIn`，則必須加上。
 
     - 建議使用 `providedIn: 'root'`，可減少 `providers` 的設定並提升效能。
 
@@ -808,13 +854,16 @@
 	| 特性 | `@Attribute` | `@Input` |
 	| - | - | - |
 	| 讀取時機 | 建構子初始化 | 生命週期中可更新 |
-	| 值是否可更新 | ❌ 固定不變 | ✅ 支援變更檢測 |
+	| 值是否可更新 | 固定不變 | 支援變更檢測 |
 	| 型別 | 永遠是字串或 `null` | 任意型別 |
 	| 常見用途 | `type`, `size`, `role`, `aria-\*` | 資料綁定 |
 
-    - 如果需要父元件傳遞資料，且值可能會改變 → 用 `@Input`。
+    - 若需要父元件傳遞資料，且值可能會改變 → 用 `@Input`。
 
-    - 如果只需要一開始的靜態配置 → 用 `@Attribute`。
+    - 若只需要一開始的靜態配置 → 用 `@Attribute`。
+
+
+### `@Self`/`@SkipSelf`/`@Host`
 
 - 用途：限制依賴注入器的搜尋範圍。
 
@@ -965,7 +1014,7 @@
         constructor(@Optional() @SkipSelf() parentService: MyService) {}
         ```
 
-    - 如果服務不存在，參數會是 `null`，程式碼可依情況處理。
+    - 若服務不存在，參數會是 `null`，程式碼可依情況處理。
 
     - 適合建立可選功能和 plugin 系統。
 
