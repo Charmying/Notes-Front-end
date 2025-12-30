@@ -73,3 +73,5 @@
 `2025-08-01` [ORM (Object-Relational Mapping)](https://github.com/Charmying/Notes-Front-end/issues/35)
 
 `2025-10-16` [OSI 七層模型](https://github.com/Charmying/Notes-Front-end/issues/36)
+
+`2025-12-31` [RxJS (Reactive Extensions for JavaScript)](https://github.com/Charmying/Notes-Front-end/issues/37)
