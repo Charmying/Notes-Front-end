@@ -81,3 +81,5 @@
 `2025-12-31` [JavaScript 的同步與非同步](https://github.com/Charmying/Notes-Front-end/issues/39)
 
 `2025-12-31` [WebSocket](https://github.com/Charmying/Notes-Front-end/issues/40)
+
+`2025-12-31` [`==`、`===`、`Object.is` 的差異與用法](https://github.com/Charmying/Notes-Front-end/issues/41)
