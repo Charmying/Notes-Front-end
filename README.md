@@ -79,3 +79,5 @@
 `2025-12-31` [HTML 中 div 標籤和 section 標籤差在哪](https://github.com/Charmying/Notes-Front-end/issues/38)
 
 `2025-12-31` [JavaScript 的同步與非同步](https://github.com/Charmying/Notes-Front-end/issues/39)
+
+`2025-12-31` [WebSocket](https://github.com/Charmying/Notes-Front-end/issues/40)
