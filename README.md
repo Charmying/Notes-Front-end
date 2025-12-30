@@ -89,3 +89,5 @@
 `2025-12-31` [`Map` 與 `Set`](https://github.com/Charmying/Notes-Front-end/issues/43)
 
 `2025-12-31` [`stack` (堆疊) 和 `queue` (佇列)](https://github.com/Charmying/Notes-Front-end/issues/44)
+
+`2025-12-31` [鏈結串列 (Linked List)](https://github.com/Charmying/Notes-Front-end/issues/45)
