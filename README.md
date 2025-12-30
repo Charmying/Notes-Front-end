@@ -91,3 +91,5 @@
 `2025-12-31` [`stack` (堆疊) 和 `queue` (佇列)](https://github.com/Charmying/Notes-Front-end/issues/44)
 
 `2025-12-31` [鏈結串列 (Linked List)](https://github.com/Charmying/Notes-Front-end/issues/45)
+
+`2025-12-31` [Big O 表示法 (Big O Notation)](https://github.com/Charmying/Notes-Front-end/issues/46)
