@@ -87,3 +87,5 @@
 `2025-12-31` [回呼函式 (Callback Function)](https://github.com/Charmying/Notes-Front-end/issues/42)
 
 `2025-12-31` [`Map` 與 `Set`](https://github.com/Charmying/Notes-Front-end/issues/43)
+
+`2025-12-31` [`stack` (堆疊) 和 `queue` (佇列)](https://github.com/Charmying/Notes-Front-end/issues/44)
